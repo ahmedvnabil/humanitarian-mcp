@@ -1,0 +1,60 @@
+{
+  "name": "humanitarian-mcp",
+  "version": "0.1.0",
+  "description": "Model Context Protocol server for humanitarian open data — UNHCR today, ReliefWeb/HDX/IOM tomorrow. Semantic tools, resources and prompts over trusted public datasets.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "humanitarian",
+    "unhcr",
+    "refugees",
+    "open-data",
+    "reliefweb",
+    "hdx"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "humanitarian-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsx src/index.ts",
+    "dev:http": "tsx src/index.ts --http",
+    "start": "node dist/index.js",
+    "dashboard": "tsx src/index.ts --http",
+    "inspect": "npx @modelcontextprotocol/inspector tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "check": "npm run typecheck && npm run lint && npm run format:check && npm run test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.30.0",
+    "prettier": "^3.6.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.0",
+    "vitest": "^3.2.4"
+  }
+}

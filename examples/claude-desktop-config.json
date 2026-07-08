@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "humanitarian": {
+      "command": "node",
+      "args": ["/absolute/path/to/humanitarian-mcp/dist/index.js"],
+      "env": {
+        "HMCP_CACHE": "sqlite",
+        "HMCP_CACHE_PATH": "/absolute/path/to/humanitarian-mcp/.cache/hmcp.sqlite",
+        "HMCP_LOG_LEVEL": "info"
+      }
+    }
+  }
+}
