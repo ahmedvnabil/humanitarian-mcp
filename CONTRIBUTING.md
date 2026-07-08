@@ -5,7 +5,7 @@ Thanks for helping make humanitarian data more accessible to AI assistants.
 ## Getting started
 
 ```bash
-git clone https://github.com/your-org/humanitarian-mcp
+git clone https://github.com/ahmedvnabil/humanitarian-mcp
 cd humanitarian-mcp
 npm install
 npm run check        # typecheck + lint + format + tests must pass

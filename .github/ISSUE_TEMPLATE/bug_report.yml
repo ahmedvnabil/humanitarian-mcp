@@ -1,0 +1,35 @@
+name: Bug report
+description: Something returned wrong data, errored, or broke MCP compliance
+labels: [bug]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Tool / resource / prompt
+      placeholder: e.g. refugee_population, country://EGY
+    validations:
+      required: true
+  - type: textarea
+    id: arguments
+    attributes:
+      label: Arguments used
+      render: json
+      placeholder: '{ "country": "Egypt", "year_from": 2020 }'
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+      description: If the data looks wrong, link the matching view in the UNHCR Refugee Data Finder so we can tell a normalization bug from an upstream revision.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Node 22.5 / macOS / Claude Desktop over stdio
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant stderr logs
+      description: Run with HMCP_LOG_LEVEL=debug if possible.
+      render: shell

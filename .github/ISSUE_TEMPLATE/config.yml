@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: UNHCR data questions
+    url: https://www.unhcr.org/refugee-statistics/
+    about: Questions about the underlying figures belong to the UNHCR Refugee Data Finder — this project only relays them.

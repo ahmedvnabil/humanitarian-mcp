@@ -83,6 +83,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     httpPort: intFromEnv(env, 'HMCP_HTTP_PORT', 8642),
     userAgent:
       env['HMCP_USER_AGENT'] ??
-      `${SERVER_NAME}/${SERVER_VERSION} (+https://github.com/humanitarian-mcp/humanitarian-mcp)`,
+      `${SERVER_NAME}/${SERVER_VERSION} (+https://github.com/ahmedvnabil/humanitarian-mcp)`,
   };
 }

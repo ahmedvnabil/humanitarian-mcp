@@ -1,0 +1,40 @@
+name: Provider request
+description: Propose a new humanitarian data source (ReliefWeb, HDX, IDMC, ...)
+labels: [provider]
+body:
+  - type: input
+    id: source
+    attributes:
+      label: Data source
+      placeholder: e.g. IDMC — Internal Displacement Monitoring Centre
+    validations:
+      required: true
+  - type: input
+    id: api
+    attributes:
+      label: API documentation URL
+    validations:
+      required: true
+  - type: textarea
+    id: datasets
+    attributes:
+      label: Which datasets map onto the platform?
+      description: See src/providers/types.ts — population, demographics, asylum-applications, asylum-decisions, or propose a new DatasetId.
+    validations:
+      required: true
+  - type: dropdown
+    id: auth
+    attributes:
+      label: Authentication
+      options:
+        - None (fully public)
+        - Free API key
+        - Restricted
+    validations:
+      required: true
+  - type: checkboxes
+    id: implementing
+    attributes:
+      label: Are you planning to implement it?
+      options:
+        - label: Yes — I'll follow docs/adding-providers.md and open a PR

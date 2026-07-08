@@ -1,0 +1,27 @@
+name: Feature request
+description: New tool, resource, prompt, output format or capability
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What question can't you answer today?
+      description: Frame it as the question an analyst or assistant would ask, not as an API shape.
+      placeholder: '"Which countries saw the fastest growth in asylum applications since 2020?"'
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed tool / change
+      placeholder: growth_ranking(dataset, metric, since) → ranked YoY growth table
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - New tool
+        - New output format
+        - New resource or prompt
+        - Change to an existing tool
+        - Other

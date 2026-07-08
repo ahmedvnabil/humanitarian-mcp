@@ -1,5 +1,12 @@
 # Humanitarian MCP
 
+![Humanitarian MCP — open humanitarian data, one MCP interface](assets/social-preview.png)
+
+[![CI](https://github.com/ahmedvnabil/humanitarian-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmedvnabil/humanitarian-mcp/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-16a34a.svg)](LICENSE)
+[![Node >= 20](https://img.shields.io/badge/node-%E2%89%A5%2020-2563eb.svg)](package.json)
+[![MCP](https://img.shields.io/badge/protocol-Model%20Context%20Protocol-7c3aed.svg)](https://modelcontextprotocol.io)
+
 **A Model Context Protocol server for humanitarian open data.**
 
 Give any MCP client — Claude Desktop, Claude Code, Cursor, or your own agent — clean, semantic access to trusted humanitarian datasets. No REST plumbing, no country-code trivia, no pagination loops: the assistant calls `compare_countries("Egypt", "Jordan")` and gets analysis-ready data with citations.
@@ -43,7 +50,7 @@ An LLM pointed at the raw REST API burns tokens rediscovering these traps every 
 Requires Node.js ≥ 20 (SQLite cache uses the built-in `node:sqlite` on Node ≥ 22.5; older Nodes fall back to memory automatically).
 
 ```bash
-git clone https://github.com/your-org/humanitarian-mcp
+git clone https://github.com/ahmedvnabil/humanitarian-mcp
 cd humanitarian-mcp
 npm install
 npm run build
