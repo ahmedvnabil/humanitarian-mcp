@@ -1,39 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>humanitarian-mcp — open humanitarian data, one MCP interface</title>
-<meta name="description" content="An open-source Model Context Protocol server that gives AI assistants clean, cited access to UNHCR refugee statistics. 17 read-only tools, no API key, works offline." />
-<meta property="og:title" content="humanitarian-mcp" />
-<meta property="og:description" content="Open humanitarian data, one MCP interface. UNHCR refugee statistics as semantic tools for AI assistants." />
+<title>humanitarian-mcp — بيانات إنسانية مفتوحة بواجهة MCP واحدة</title>
+<meta name="description" content="خادم Model Context Protocol مفتوح المصدر يمنح المساعدات الذكية وصولًا نظيفًا وموثّقًا لإحصاءات اللاجئين من مفوضية الأمم المتحدة. ١٧ أداة للقراءة فقط، بلا مفاتيح API، ويعمل دون اتصال." />
+<meta property="og:title" content="humanitarian-mcp — بيانات إنسانية مفتوحة بواجهة MCP واحدة" />
+<meta property="og:description" content="إحصاءات اللاجئين من UNHCR كأدوات دلالية لأي مساعد ذكي يتحدث MCP." />
 <meta property="og:image" content="https://raw.githubusercontent.com/ahmedvnabil/humanitarian-mcp/main/assets/social-preview.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          ink: '#0b0c0e',
-          panel: '#111316',
-          line: '#26282c',
-          fog: '#8b8f96',
-          bone: '#e8e9eb',
-          ok: '#22c55e',
-          crisis: '#e5484d',
-          info: '#3e8bff',
-          amber: '#f5a623',
+          paper: '#f7f3eb',
+          card: '#fdfbf6',
+          ink: '#1c2433',
+          soft: '#5c6474',
+          rule: '#ddd5c4',
+          teal: '#0f766e',
+          crisis: '#b3372f',
+          sand: '#ede5d3',
         },
         fontFamily: {
-          disp: ['Archivo', 'sans-serif'],
+          head: ['Alexandria', 'sans-serif'],
+          body: ['"IBM Plex Sans Arabic"', 'sans-serif'],
           mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
         },
         keyframes: {
           grow: { from: { transform: 'scaleY(0)' }, to: { transform: 'scaleY(1)' } },
-          fadeup: { from: { opacity: '0', transform: 'translateY(14px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+          fadeup: { from: { opacity: '0', transform: 'translateY(16px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
         },
         animation: {
           grow: 'grow .9s cubic-bezier(0.16,1,0.3,1) both',
@@ -46,7 +46,7 @@
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js" defer></script>
 </head>
 
-<body class="bg-ink text-bone font-mono text-[15px] leading-relaxed antialiased"
+<body class="bg-paper text-ink font-body leading-relaxed antialiased"
       x-data="{
         tab: 'desktop',
         copied: '',
@@ -57,167 +57,183 @@
         }
       }">
 
-<!-- ── top bar ─────────────────────────────────────────────── -->
-<header class="border-b border-line">
-  <div class="max-w-6xl mx-auto px-5 h-14 flex items-center gap-6">
-    <a href="#" class="font-disp font-black tracking-tight text-bone">humanitarian-mcp</a>
-    <span class="text-fog text-xs hidden sm:inline">v0.1.0 · MIT</span>
-    <nav class="ml-auto flex items-center gap-6 text-sm">
-      <a href="#why" class="text-fog hover:text-bone">Why</a>
-      <a href="#usage" class="text-fog hover:text-bone">Usage</a>
-      <a href="#inside" class="text-fog hover:text-bone">Tools</a>
-      <a href="https://github.com/ahmedvnabil/humanitarian-mcp" class="text-info hover:text-bone">GitHub ↗</a>
+<!-- ━━ الترويسة ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<header class="border-b-2 border-ink">
+  <div class="max-w-5xl mx-auto px-6 py-5 flex flex-wrap items-baseline gap-x-8 gap-y-2">
+    <span class="font-mono text-sm text-soft" dir="ltr">humanitarian-mcp</span>
+    <h1 class="font-head font-800 text-lg">بياناتٌ إنسانية مفتوحة</h1>
+    <nav class="mr-auto flex items-center gap-7 text-sm">
+      <a href="#why" class="text-soft hover:text-teal">لماذا؟</a>
+      <a href="#usage" class="text-soft hover:text-teal">الاستخدام</a>
+      <a href="#inside" class="text-soft hover:text-teal">الأدوات</a>
+      <a href="https://github.com/ahmedvnabil/humanitarian-mcp" class="text-teal border-b border-teal hover:border-ink hover:text-ink">GitHub ↗</a>
     </nav>
   </div>
 </header>
 
-<!-- ── hero ────────────────────────────────────────────────── -->
-<section class="border-b border-line overflow-hidden">
-  <div class="max-w-6xl mx-auto px-5 grid lg:grid-cols-[7fr,5fr]">
+<!-- ━━ الافتتاحية ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section class="max-w-5xl mx-auto px-6 pt-16 pb-12 lg:pt-24">
+  <p class="text-teal text-sm font-600 mb-5 animate-fadeup">خادم مفتوح المصدر لبروتوكول Model Context Protocol</p>
+  <h2 class="font-head font-900 leading-[1.15] animate-fadeup" style="font-size: clamp(2.2rem, 5.5vw, 4rem); animation-delay:.05s">
+    بياناتُ اللجوء والنزوح،<br />بين يدي مساعدك الذكي.
+  </h2>
+  <p class="mt-8 text-soft text-lg max-w-2xl animate-fadeup" style="animation-delay:.1s">
+    اسأل Claude أو Cursor أو أي عميل MCP:
+    <span class="text-ink font-600">«قارن أعداد اللاجئين في مصر والأردن»</span> —
+    فيصلك جدول موثّق من بيانات مفوضية اللاجئين (UNHCR) الممتدة عبر ٧٥ عامًا.
+    بلا تعقيدات REST، بلا أكواد دول ملغومة، بلا مفاتيح API.
+  </p>
 
-    <div class="py-16 lg:py-24 lg:pr-14 animate-fadeup">
-      <p class="text-ok text-xs tracking-[0.25em] uppercase mb-6">Model Context Protocol · UNHCR · read-only</p>
-      <h1 class="font-disp font-black text-bone leading-[0.95] tracking-tight"
-          style="font-size: clamp(2.6rem, 6vw, 4.6rem); font-stretch: 90%;">
-        Open humanitarian data,<br />one MCP interface.
-      </h1>
-      <p class="mt-7 text-fog max-w-xl">
-        Give Claude, Cursor, or any MCP client clean, cited access to 75 years of
-        UNHCR displacement statistics. Your assistant asks
-        <span class="text-bone">“compare refugee populations in Egypt and Jordan”</span> —
-        it gets sourced tables, not REST plumbing.
-      </p>
-
-      <div class="mt-10 flex items-stretch max-w-xl border border-line">
-        <code id="install" class="flex-1 px-4 py-3 text-sm text-bone bg-panel overflow-x-auto whitespace-nowrap">git clone https://github.com/ahmedvnabil/humanitarian-mcp && cd humanitarian-mcp && npm i && npm run build</code>
-        <button class="px-4 text-xs uppercase tracking-widest border-l border-line hover:bg-panel"
-                :class="copied === 'install' ? 'text-ok' : 'text-fog'"
-                @click="copy('install', document.getElementById('install').textContent)"
-                x-text="copied === 'install' ? 'copied' : 'copy'"></button>
-      </div>
-
-      <div class="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-xs text-fog">
-        <span><span class="text-bone">17</span> tools</span>
-        <span><span class="text-bone">7</span> prompts</span>
-        <span><span class="text-bone">99</span> tests</span>
-        <span><span class="text-bone">0</span> API keys needed</span>
-        <span>works <span class="text-bone">offline</span></span>
-      </div>
+  <div class="mt-10 flex flex-wrap items-center gap-4 animate-fadeup" style="animation-delay:.15s">
+    <div class="flex items-stretch border-2 border-ink bg-card" dir="ltr">
+      <code id="install" class="px-4 py-3 text-sm font-mono overflow-x-auto whitespace-nowrap max-w-[70vw] sm:max-w-md">git clone https://github.com/ahmedvnabil/humanitarian-mcp && cd humanitarian-mcp && npm i && npm run build</code>
+      <button class="px-4 text-xs font-body border-l-2 border-ink bg-ink text-paper hover:bg-teal"
+              @click="copy('install', document.getElementById('install').textContent)"
+              x-text="copied === 'install' ? '✓ اتنسخ' : 'انسخ'"></button>
     </div>
+  </div>
 
-    <!-- the data is the hero: Sudan displacement, real numbers -->
-    <div class="border-t lg:border-t-0 lg:border-l border-line py-12 lg:py-24 lg:pl-14 flex flex-col justify-end">
-      <p class="text-xs text-fog mb-1">real output — <span class="text-bone">trend_analysis("Sudan", role: "origin")</span></p>
-      <p class="text-xs text-fog mb-8">people displaced from Sudan, millions · <span class="text-crisis">■</span> anomalous years (z ≥ 2)</p>
-      <div class="flex items-end gap-[6px] h-[240px]">
-        <div class="flex-1 bg-line origin-bottom animate-grow" style="height:59px;  animation-delay:.05s"></div>
-        <div class="flex-1 bg-line origin-bottom animate-grow" style="height:62px;  animation-delay:.10s"></div>
-        <div class="flex-1 bg-line origin-bottom animate-grow" style="height:63px;  animation-delay:.15s"></div>
-        <div class="flex-1 bg-line origin-bottom animate-grow" style="height:67px;  animation-delay:.20s"></div>
-        <div class="flex-1 bg-line origin-bottom animate-grow" style="height:70px;  animation-delay:.25s"></div>
-        <div class="flex-1 bg-line origin-bottom animate-grow" style="height:71px;  animation-delay:.30s"></div>
-        <div class="flex-1 bg-crisis origin-bottom animate-grow" style="height:127px; animation-delay:.35s"></div>
-        <div class="flex-1 bg-crisis origin-bottom animate-grow" style="height:178px; animation-delay:.40s"></div>
-        <div class="flex-1 bg-crisis origin-bottom animate-grow" style="height:240px; animation-delay:.45s"></div>
-      </div>
-      <div class="flex gap-[6px] border-t border-line pt-2 mt-0 text-[10px] text-fog">
-        <span class="flex-1 text-center">'17</span><span class="flex-1 text-center">'18</span>
-        <span class="flex-1 text-center">'19</span><span class="flex-1 text-center">'20</span>
-        <span class="flex-1 text-center">'21</span><span class="flex-1 text-center">'22</span>
-        <span class="flex-1 text-center text-crisis">'23</span>
-        <span class="flex-1 text-center text-crisis">'24</span>
-        <span class="flex-1 text-center text-crisis">'25</span>
-      </div>
-      <p class="mt-4 text-xs text-fog">0.70M → <span class="text-crisis">2.82M</span> · +78.8% in 2023, flagged automatically · source: UNHCR</p>
-    </div>
+  <div class="mt-10 flex flex-wrap gap-x-10 gap-y-3 text-sm text-soft border-t border-rule pt-6">
+    <span><strong class="text-ink font-head text-xl">17</strong> أداة دلالية</span>
+    <span><strong class="text-ink font-head text-xl">7</strong> قوالب جاهزة</span>
+    <span><strong class="text-ink font-head text-xl">99</strong> اختبارًا ناجحًا</span>
+    <span><strong class="text-ink font-head text-xl">0</strong> مفاتيح مطلوبة</span>
+    <span>يعمل <strong class="text-ink">دون اتصال</strong> بعد التخزين المؤقت</span>
   </div>
 </section>
 
-<!-- ── why ─────────────────────────────────────────────────── -->
-<section id="why" class="border-b border-line">
-  <div class="max-w-6xl mx-auto px-5 py-16 lg:py-20">
-    <h2 class="font-disp font-black text-3xl tracking-tight">The API is booby-trapped.<br class="sm:hidden" /> We defused it once.</h2>
-    <p class="mt-5 text-fog max-w-2xl">
-      UNHCR's API uses its own country codes that contradict ISO for
-      <span class="text-bone">99 of 232 countries</span>. Egypt is
-      <span class="text-crisis">ARE</span> — which is the UAE's ISO code. Guess wrong and you
-      don't get an error. You get an empty array, and your assistant confidently reports nothing.
+<!-- ━━ الرسم: قصة السودان ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section class="max-w-5xl mx-auto px-6 pb-16">
+  <figure class="border-2 border-ink bg-card p-6 sm:p-8">
+    <figcaption class="flex flex-wrap items-baseline gap-x-4 gap-y-1 mb-8">
+      <span class="font-head font-800 text-xl">النازحون من السودان</span>
+      <span class="text-soft text-sm">بالمليون · <span class="text-crisis font-600">■</span> سنوات شاذة إحصائيًا</span>
+      <code class="mr-auto text-xs text-soft font-mono" dir="ltr">trend_analysis("Sudan")</code>
+    </figcaption>
+    <div dir="ltr">
+      <div class="flex items-end gap-[7px] h-[220px]">
+        <div class="flex-1 bg-sand border border-rule origin-bottom animate-grow" style="height:54px;  animation-delay:.05s"></div>
+        <div class="flex-1 bg-sand border border-rule origin-bottom animate-grow" style="height:57px;  animation-delay:.10s"></div>
+        <div class="flex-1 bg-sand border border-rule origin-bottom animate-grow" style="height:57px;  animation-delay:.15s"></div>
+        <div class="flex-1 bg-sand border border-rule origin-bottom animate-grow" style="height:61px;  animation-delay:.20s"></div>
+        <div class="flex-1 bg-sand border border-rule origin-bottom animate-grow" style="height:64px;  animation-delay:.25s"></div>
+        <div class="flex-1 bg-sand border border-rule origin-bottom animate-grow" style="height:65px;  animation-delay:.30s"></div>
+        <div class="flex-1 bg-crisis origin-bottom animate-grow" style="height:117px; animation-delay:.35s"></div>
+        <div class="flex-1 bg-crisis origin-bottom animate-grow" style="height:163px; animation-delay:.40s"></div>
+        <div class="flex-1 bg-crisis origin-bottom animate-grow" style="height:220px; animation-delay:.45s"></div>
+      </div>
+      <div class="flex gap-[7px] border-t-2 border-ink pt-2 text-[11px] text-soft font-mono">
+        <span class="flex-1 text-center">2017</span><span class="flex-1 text-center">2018</span>
+        <span class="flex-1 text-center">2019</span><span class="flex-1 text-center">2020</span>
+        <span class="flex-1 text-center">2021</span><span class="flex-1 text-center">2022</span>
+        <span class="flex-1 text-center text-crisis font-500">2023</span>
+        <span class="flex-1 text-center text-crisis font-500">2024</span>
+        <span class="flex-1 text-center text-crisis font-500">2025</span>
+      </div>
+    </div>
+    <p class="mt-5 text-sm text-soft">
+      من <span class="font-mono" dir="ltr">0.70M</span> إلى <span class="font-mono text-crisis font-600" dir="ltr">2.82M</span> —
+      أداة تحليل الاتجاهات رصدت قفزة 2023 <span class="text-ink font-600">(+78.8%)</span> تلقائيًا دون أن يطلب منها أحد.
+      المصدر: مفوضية الأمم المتحدة السامية لشؤون اللاجئين.
     </p>
+  </figure>
+</section>
 
-    <div class="mt-10 grid md:grid-cols-2 border border-line">
-      <div class="p-6 md:border-r border-b md:border-b-0 border-line bg-panel">
-        <p class="text-xs uppercase tracking-widest text-crisis mb-4">raw REST</p>
-<pre class="text-sm text-fog overflow-x-auto leading-6">GET /population/v1/population/?coa=EGY
+<!-- ━━ لماذا ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="why" class="border-y-2 border-ink bg-sand/40">
+  <div class="max-w-5xl mx-auto px-6 py-16 lg:py-20">
+    <h2 class="font-head font-900 text-3xl sm:text-4xl leading-snug">الواجهة الرسمية ملغومة.<br />نحن نزعنا الألغام مرةً واحدة.</h2>
 
-{ "items": <span class="text-crisis">[]</span> }   <span class="text-fog">// silent. wrong code.</span></pre>
+    <div class="mt-8 grid lg:grid-cols-[5fr,7fr] gap-10 items-start">
+      <div class="text-soft space-y-5">
+        <p>
+          تستخدم واجهة UNHCR أكوادَ دولٍ خاصة بها تخالف معيار ISO في
+          <strong class="text-ink">٩٩ دولة من أصل ٢٣٢</strong>.
+        </p>
+        <p class="font-head font-700 text-2xl text-ink leading-relaxed">
+          كود مصر عندهم <span class="font-mono text-crisis" dir="ltr">ARE</span>…<br />
+          وهو نفسه كود الإمارات في ISO!
+        </p>
+        <p>
+          والأدهى: الخطأ لا يُنتج رسالة خطأ، بل مصفوفة فارغة — فيُبلغ مساعدُك
+          بثقة أن «لا بيانات»، وهو مخطئ. هذا المشروع يحفظ كل هذه الفخاخ
+          مرة واحدة، خلف أدوات بأسماء بشرية.
+        </p>
       </div>
-      <div class="p-6">
-        <p class="text-xs uppercase tracking-widest text-ok mb-4">humanitarian-mcp</p>
-<pre class="text-sm text-fog overflow-x-auto leading-6">refugee_population({ country: "Egypt" })
 
-{ country: <span class="text-bone">"Egypt"</span>, country_code: <span class="text-bone">"EGY"</span>,
-  year: 2025, refugees: <span class="text-ok">220,033</span>, ... }</pre>
+      <div class="border-2 border-ink">
+        <div class="p-5 bg-card border-b-2 border-ink" dir="ltr">
+          <p class="text-xs font-600 text-crisis mb-3 font-mono">RAW REST</p>
+<pre class="text-[13px] font-mono text-soft overflow-x-auto leading-6">GET /population/v1/population/?coa=EGY
+
+{ "items": <span class="text-crisis font-600">[]</span> }   // silent — wrong code</pre>
+        </div>
+        <div class="p-5 bg-card" dir="ltr">
+          <p class="text-xs font-600 text-teal mb-3 font-mono">HUMANITARIAN-MCP</p>
+<pre class="text-[13px] font-mono text-soft overflow-x-auto leading-6">refugee_population({ country: "Egypt" })
+
+{ country: "Egypt", country_code: <span class="text-ink font-600">"EGY"</span>,
+  year: 2025, refugees: <span class="text-teal font-600">220,033</span>, … }</pre>
+        </div>
       </div>
     </div>
 
-    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 text-sm">
-      <div class="border-l border-line pl-4 py-1"><span class="text-bone">Normalized.</span> <span class="text-fog">ISO3 + consistent fields across every future provider.</span></div>
-      <div class="border-l border-line pl-4 py-1 mt-4 sm:mt-0"><span class="text-bone">Read-only.</span> <span class="text-fog">Every tool is annotated; nothing writes upstream.</span></div>
-      <div class="border-l border-line pl-4 py-1 mt-4 lg:mt-0"><span class="text-bone">Polite.</span> <span class="text-fog">Rate-limited, retried, cached with ETag revalidation.</span></div>
-      <div class="border-l border-line pl-4 py-1 mt-4 lg:mt-0"><span class="text-bone">Cited.</span> <span class="text-fog">UNHCR attribution travels with every payload.</span></div>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+      <div class="border-r-2 border-ink pr-4"><strong class="text-ink">موحَّد.</strong> <span class="text-soft">حقول ثابتة و ISO3 عبر كل مزوّد حالي وقادم.</span></div>
+      <div class="border-r-2 border-ink pr-4"><strong class="text-ink">قراءة فقط.</strong> <span class="text-soft">كل أداة معلَّمة read-only؛ لا شيء يكتب للمصدر.</span></div>
+      <div class="border-r-2 border-ink pr-4"><strong class="text-ink">مهذَّب.</strong> <span class="text-soft">حدود معدل، إعادة محاولة، تخزين مؤقت بـ ETag.</span></div>
+      <div class="border-r-2 border-ink pr-4"><strong class="text-ink">موثَّق.</strong> <span class="text-soft">إسناد UNHCR يرافق كل رقم يخرج.</span></div>
     </div>
   </div>
 </section>
 
-<!-- ── transcript ──────────────────────────────────────────── -->
-<section class="border-b border-line bg-panel">
-  <div class="max-w-6xl mx-auto px-5 py-16 lg:py-20 grid lg:grid-cols-[4fr,8fr] gap-10">
+<!-- ━━ شاهده يجيب ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section class="max-w-5xl mx-auto px-6 py-16 lg:py-20">
+  <div class="grid lg:grid-cols-[4fr,8fr] gap-10">
     <div>
-      <h2 class="font-disp font-black text-3xl tracking-tight">Watch it answer.</h2>
-      <p class="mt-5 text-fog">A real exchange — the assistant picks the tool,
-        the server does the plumbing, the answer arrives cited. Numbers below are
-        live UNHCR data, not lorem ipsum.</p>
+      <h2 class="font-head font-900 text-3xl leading-snug">شاهِده يُجيب.</h2>
+      <p class="mt-5 text-soft">حوار حقيقي: أنت تسأل بلغتك، المساعد يختار الأداة،
+        والخادم يتكفل بالسباكة. الأرقام أدناه بيانات UNHCR حية — ليست للزينة.</p>
     </div>
-    <div class="border border-line bg-ink">
-      <div class="flex items-center gap-2 px-4 h-9 border-b border-line text-xs text-fog">
-        <span class="w-2 h-2 bg-crisis inline-block"></span>
-        <span class="w-2 h-2 bg-amber inline-block"></span>
-        <span class="w-2 h-2 bg-ok inline-block"></span>
-        <span class="ml-3">claude · humanitarian-mcp connected</span>
+    <div class="border-2 border-ink bg-card">
+      <div class="px-5 py-3 border-b-2 border-ink flex items-center gap-3 text-xs text-soft">
+        <span class="w-2.5 h-2.5 rounded-full bg-teal inline-block"></span>
+        <span>claude — humanitarian-mcp متصل</span>
       </div>
-      <div class="p-5 text-sm leading-7 overflow-x-auto">
-        <p><span class="text-fog">you ›</span> Compare refugee populations in Egypt and Jordan over the last five years.</p>
-        <p class="mt-3 text-fog">⚙ tools/call <span class="text-info">compare_countries</span> { countries: ["Egypt","Jordan"] } · 1.2s</p>
-<pre class="mt-3 text-bone">| Year | Egypt   | Jordan  |
+      <div class="p-6 text-[15px] leading-8">
+        <p><span class="text-soft font-600">أنت ‹</span> قارن أعداد اللاجئين في مصر والأردن خلال آخر خمس سنوات.</p>
+        <p class="mt-3 text-soft text-sm" dir="ltr">⚙ tools/call <span class="text-teal font-600">compare_countries</span> { countries: ["Egypt","Jordan"] } · 1.2s</p>
+<pre class="mt-4 text-[13px] font-mono bg-paper border border-rule p-4 overflow-x-auto leading-6" dir="ltr">| Year | Egypt   | Jordan  |
 | ---- | ------- | ------- |
 | 2021 | 280,686 | 712,823 |
 | 2022 | 294,632 | 697,761 |
 | 2023 | 240,507 | 684,066 |
 | 2024 | 238,014 | 643,641 |
 | 2025 | 220,033 | 436,226 |</pre>
-        <p class="mt-3 text-fog">claude › Jordan hosts roughly twice Egypt's registered refugees, but both declined
-        through 2025 — Jordan sharply (−32% since 2021)… <span class="text-fog">Source: UNHCR Refugee Data Finder.</span></p>
+        <p class="mt-4"><span class="text-soft font-600">claude ›</span> تستضيف الأردن قرابة ضعف عدد اللاجئين المسجلين في مصر،
+          لكن الرقمين تراجعا حتى 2025 — الأردن بحدة (−32% منذ 2021)…
+          <span class="text-soft text-sm">المصدر: UNHCR Refugee Data Finder.</span></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── usage ───────────────────────────────────────────────── -->
-<section id="usage" class="border-b border-line">
-  <div class="max-w-6xl mx-auto px-5 py-16 lg:py-20">
-    <h2 class="font-disp font-black text-3xl tracking-tight">Use it in two minutes.</h2>
+<!-- ━━ الاستخدام ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="usage" class="border-y-2 border-ink bg-sand/40">
+  <div class="max-w-5xl mx-auto px-6 py-16 lg:py-20">
+    <h2 class="font-head font-900 text-3xl sm:text-4xl">جاهز في دقيقتين.</h2>
 
-    <div class="mt-8 flex flex-wrap border border-line border-b-0 text-xs uppercase tracking-widest">
-      <button @click="tab='desktop'" :class="tab==='desktop' ? 'bg-panel text-bone' : 'text-fog hover:text-bone'" class="px-5 py-3 border-r border-line">Claude Desktop</button>
-      <button @click="tab='code'" :class="tab==='code' ? 'bg-panel text-bone' : 'text-fog hover:text-bone'" class="px-5 py-3 border-r border-line">Claude Code</button>
-      <button @click="tab='http'" :class="tab==='http' ? 'bg-panel text-bone' : 'text-fog hover:text-bone'" class="px-5 py-3 border-r border-line">HTTP / curl</button>
-      <button @click="tab='dash'" :class="tab==='dash' ? 'bg-panel text-bone' : 'text-fog hover:text-bone'" class="px-5 py-3">Dashboard</button>
+    <div class="mt-8 flex flex-wrap gap-2 text-sm font-600">
+      <button @click="tab='desktop'" :class="tab==='desktop' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'" class="px-5 py-2.5 border-2 border-ink">Claude Desktop</button>
+      <button @click="tab='code'" :class="tab==='code' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'" class="px-5 py-2.5 border-2 border-ink">Claude Code</button>
+      <button @click="tab='http'" :class="tab==='http' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'" class="px-5 py-2.5 border-2 border-ink">HTTP / curl</button>
+      <button @click="tab='dash'" :class="tab==='dash' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'" class="px-5 py-2.5 border-2 border-ink">لوحة العرض</button>
     </div>
 
-    <div class="border border-line bg-panel">
+    <div class="mt-4 border-2 border-ink bg-card">
       <div x-show="tab==='desktop'" class="p-6">
-        <p class="text-fog text-sm mb-4">Add to <span class="text-bone">claude_desktop_config.json</span>, restart Claude, then just ask questions.</p>
-<pre id="c-desktop" class="text-sm text-bone overflow-x-auto leading-6">{
+        <p class="text-soft text-sm mb-4">أضِف هذا إلى <code class="font-mono text-ink" dir="ltr">claude_desktop_config.json</code>، أعد تشغيل Claude، ثم اسأل بلغتك مباشرة.</p>
+<pre id="c-desktop" class="text-[13px] font-mono bg-paper border border-rule p-4 overflow-x-auto leading-6" dir="ltr">{
   "mcpServers": {
     "humanitarian": {
       "command": "node",
@@ -225,113 +241,116 @@
     }
   }
 }</pre>
-        <button class="mt-4 text-xs uppercase tracking-widest border border-line px-4 py-2 hover:bg-ink"
-                :class="copied==='desktop' ? 'text-ok' : 'text-fog'"
+        <button class="mt-4 text-sm font-600 border-2 border-ink px-5 py-2 bg-ink text-paper hover:bg-teal"
                 @click="copy('desktop', document.getElementById('c-desktop').textContent)"
-                x-text="copied==='desktop' ? 'copied' : 'copy config'"></button>
+                x-text="copied==='desktop' ? '✓ اتنسخ' : 'انسخ الإعداد'"></button>
       </div>
 
       <div x-show="tab==='code'" class="p-6" style="display:none">
-        <p class="text-fog text-sm mb-4">One command registers the server for every session.</p>
-<pre id="c-code" class="text-sm text-bone overflow-x-auto leading-6">claude mcp add humanitarian -- node /path/to/humanitarian-mcp/dist/index.js</pre>
-        <p class="text-fog text-sm mt-4 mb-2">Then, inside Claude Code:</p>
-<pre class="text-sm text-fog overflow-x-auto leading-6">› Generate a donor briefing about Sudan.
-› Which countries saw anomalous displacement spikes since 2015?
-› Export Jordan's asylum decisions 2018–2025 as CSV.</pre>
-        <button class="mt-4 text-xs uppercase tracking-widest border border-line px-4 py-2 hover:bg-ink"
-                :class="copied==='code' ? 'text-ok' : 'text-fog'"
+        <p class="text-soft text-sm mb-4">أمر واحد يسجّل الخادم لكل الجلسات:</p>
+<pre id="c-code" class="text-[13px] font-mono bg-paper border border-rule p-4 overflow-x-auto leading-6" dir="ltr">claude mcp add humanitarian -- node /path/to/humanitarian-mcp/dist/index.js</pre>
+        <p class="text-soft text-sm mt-5 mb-2">ثم داخل Claude Code جرّب:</p>
+        <ul class="text-sm space-y-2 text-ink">
+          <li>« اعمل تقريرًا إنسانيًا كاملًا عن السودان »</li>
+          <li>« ما أكثر ١٠ دول استضافةً للاجئين هذا العام؟ »</li>
+          <li>« صدّر قرارات اللجوء في الأردن 2018–2025 كملف CSV »</li>
+        </ul>
+        <button class="mt-5 text-sm font-600 border-2 border-ink px-5 py-2 bg-ink text-paper hover:bg-teal"
                 @click="copy('code', document.getElementById('c-code').textContent)"
-                x-text="copied==='code' ? 'copied' : 'copy command'"></button>
+                x-text="copied==='code' ? '✓ اتنسخ' : 'انسخ الأمر'"></button>
       </div>
 
       <div x-show="tab==='http'" class="p-6" style="display:none">
-        <p class="text-fog text-sm mb-4">Stateless streamable HTTP — every request self-contained, trivially load-balanced.</p>
-<pre id="c-http" class="text-sm text-bone overflow-x-auto leading-6">npm run dashboard   # serves POST /mcp on :8642
+        <p class="text-soft text-sm mb-4">نقطة HTTP عديمة الحالة — كل طلب مستقل بذاته، وتتوزّع خلف أي load balancer.</p>
+<pre id="c-http" class="text-[13px] font-mono bg-paper border border-rule p-4 overflow-x-auto leading-6" dir="ltr">npm run dashboard   # POST /mcp على المنفذ 8642
 
 curl -s -X POST http://localhost:8642/mcp \
   -H 'content-type: application/json' \
   -H 'accept: application/json, text/event-stream' \
   -d '{"jsonrpc":"2.0","id":1,"method":"tools/call","params":{
         "name":"top_host_countries","arguments":{"limit":5}}}'</pre>
-        <button class="mt-4 text-xs uppercase tracking-widest border border-line px-4 py-2 hover:bg-ink"
-                :class="copied==='http' ? 'text-ok' : 'text-fog'"
+        <button class="mt-4 text-sm font-600 border-2 border-ink px-5 py-2 bg-ink text-paper hover:bg-teal"
                 @click="copy('http', document.getElementById('c-http').textContent)"
-                x-text="copied==='http' ? 'copied' : 'copy'"></button>
+                x-text="copied==='http' ? '✓ اتنسخ' : 'انسخ'"></button>
       </div>
 
       <div x-show="tab==='dash'" class="p-6" style="display:none">
-        <p class="text-fog text-sm mb-4">No MCP client handy? The built-in dashboard shows providers, health,
-          the full catalogue, live logs — and runs any tool from the browser.</p>
-<pre class="text-sm text-bone overflow-x-auto leading-6">npm run dashboard
+        <p class="text-soft text-sm mb-4">بدون عميل MCP؟ لوحة العرض المدمجة تعرض المزوّدين وصحتهم والكتالوج كاملًا
+          وسجلات حية — وتشغّل أي أداة من المتصفح مباشرة.</p>
+<pre class="text-[13px] font-mono bg-paper border border-rule p-4 overflow-x-auto leading-6" dir="ltr">npm run dashboard
 # → http://localhost:8642</pre>
-        <p class="text-fog text-sm mt-4">Environment knobs (all optional): <span class="text-bone">HMCP_CACHE=sqlite</span> persists data between runs ·
-        <span class="text-bone">HMCP_OFFLINE=1</span> serves cache only · full list in <a class="text-info hover:text-bone" href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/.env.example">.env.example ↗</a></p>
+        <p class="text-soft text-sm mt-4">
+          إعدادات اختيارية: <code class="font-mono text-ink" dir="ltr">HMCP_CACHE=sqlite</code> تحفظ البيانات بين الجلسات ·
+          <code class="font-mono text-ink" dir="ltr">HMCP_OFFLINE=1</code> يعمل من الكاش فقط ·
+          القائمة الكاملة في <a class="text-teal border-b border-teal hover:text-ink hover:border-ink" href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/.env.example" dir="ltr">.env.example ↗</a>
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── inside ──────────────────────────────────────────────── -->
-<section id="inside" class="border-b border-line">
-  <div class="max-w-6xl mx-auto px-5 py-16 lg:py-20">
-    <h2 class="font-disp font-black text-3xl tracking-tight">What your assistant gets.</h2>
+<!-- ━━ ماذا يملك مساعدك ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<section id="inside" class="max-w-5xl mx-auto px-6 py-16 lg:py-20">
+  <h2 class="font-head font-900 text-3xl sm:text-4xl">ماذا يصبح بين يدي مساعدك؟</h2>
 
-    <div class="mt-10 grid lg:grid-cols-[6fr,3fr,3fr] gap-x-12 gap-y-10">
+  <div class="mt-10 grid lg:grid-cols-[7fr,5fr] gap-x-14 gap-y-12">
+    <div>
+      <p class="text-sm font-600 text-teal mb-5">١٧ أداة — كلها قراءة فقط</p>
+      <ul class="grid sm:grid-cols-2 gap-x-10 text-sm">
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">search_country</code><span class="text-soft">— يفهم «سوريا» ويحوّلها SYR</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">country_profile</code><span class="text-soft">— لمحة شاملة بنداء واحد</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">compare_countries</code><span class="text-soft">— حتى ٥ دول جنبًا لجنب</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">refugee_population</code><span class="text-soft">— سنويًا، بترقيم صفحات</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">demographics</code><span class="text-soft">— العمر × الجنس</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">latest_statistics</code><span class="text-soft">— أحدث الأرقام</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">asylum_applications</code><span class="text-soft">— طلبات اللجوء سنويًا</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">asylum_decisions</code><span class="text-soft">— مع نسبة القبول</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">trend_analysis</code><span class="text-soft">— ميل، R²، سنوات شاذة</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">forecast</code><span class="text-soft">— إسقاط بتحذير صريح</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">top_host_countries</code><span class="text-soft">— ترتيب الدول</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">generate_chart</code><span class="text-soft">— Chart.js/Vega/Mermaid/SVG</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">generate_map</code><span class="text-soft">— خريطة GeoJSON</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">generate_country_report</code><span class="text-soft">— تقرير Markdown كامل</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">export_data</code><span class="text-soft">— CSV/JSON/MD/GeoJSON</span></li>
+        <li class="py-2 border-b border-rule flex gap-2 flex-wrap"><code class="font-mono text-ink" dir="ltr">get_metadata · provider_health</code></li>
+      </ul>
+      <p class="mt-5 text-sm text-soft">المرجع الكامل للوسائط →
+        <a class="text-teal border-b border-teal hover:text-ink hover:border-ink" href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/tools.md" dir="ltr">docs/tools.md ↗</a></p>
+    </div>
+
+    <div class="space-y-12">
       <div>
-        <p class="text-xs uppercase tracking-widest text-info mb-4">17 tools — all read-only</p>
-        <ul class="grid sm:grid-cols-2 gap-x-8 text-sm">
-          <li class="py-1.5 border-b border-line"><span class="text-bone">search_country</span> <span class="text-fog">— "DRC"? → COD</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">country_profile</span> <span class="text-fog">— one-call snapshot</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">compare_countries</span> <span class="text-fog">— 2–5 side by side</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">refugee_population</span> <span class="text-fog">— yearly, paginated</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">demographics</span> <span class="text-fog">— age × sex</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">latest_statistics</span> <span class="text-fog">— newest figures</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">asylum_applications</span> <span class="text-fog">— lodged / year</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">asylum_decisions</span> <span class="text-fog">— + recognition rate</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">trend_analysis</span> <span class="text-fog">— slope, R², anomalies</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">forecast</span> <span class="text-fog">— caveated projection</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">top_host_countries</span> <span class="text-fog">— rankings</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">generate_chart</span> <span class="text-fog">— Chart.js/Vega/Mermaid/SVG</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">generate_map</span> <span class="text-fog">— GeoJSON points</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">generate_country_report</span> <span class="text-fog">— full markdown</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">export_data</span> <span class="text-fog">— CSV/JSON/MD/GeoJSON</span></li>
-          <li class="py-1.5 border-b border-line"><span class="text-bone">get_metadata</span> · <span class="text-bone">provider_health</span></li>
+        <p class="text-sm font-600 text-teal mb-5">موارد قابلة للعنونة</p>
+        <ul class="text-sm space-y-2.5 font-mono" dir="ltr">
+          <li><span class="text-ink">country://EGY</span> <span class="text-soft font-body">لمحة بلد</span></li>
+          <li><span class="text-ink">report://SDN</span> <span class="text-soft font-body">تقرير كامل</span></li>
+          <li><span class="text-ink">chart://UGA</span> <span class="text-soft font-body">إعداد Chart.js جاهز</span></li>
+          <li><span class="text-ink">metadata://providers</span> <span class="text-soft font-body">الكتالوج</span></li>
         </ul>
-        <p class="mt-4 text-xs text-fog">Full parameter reference → <a class="text-info hover:text-bone" href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/tools.md">docs/tools.md ↗</a></p>
       </div>
-
       <div>
-        <p class="text-xs uppercase tracking-widest text-amber mb-4">Resources</p>
-        <ul class="text-sm space-y-2">
-          <li class="text-amber">country://EGY</li>
-          <li class="text-amber">report://SDN</li>
-          <li class="text-amber">chart://UGA</li>
-          <li class="text-amber">dataset://population</li>
-          <li class="text-amber">metadata://providers</li>
-        </ul>
-        <p class="mt-4 text-fog text-sm">Addressable snapshots, full markdown reports and ready Chart.js configs — with URI autocompletion.</p>
-      </div>
-
-      <div>
-        <p class="text-xs uppercase tracking-widest text-ok mb-4">Providers</p>
+        <p class="text-sm font-600 text-teal mb-5">المزوّدون</p>
         <ul class="text-sm space-y-3">
-          <li><span class="text-ok">●</span> <span class="text-bone">UNHCR</span> <span class="text-fog">— live, 4 datasets, 1951→now</span></li>
-          <li><span class="text-fog">○</span> <span class="text-bone">ReliefWeb</span> <span class="text-fog">— planned</span></li>
-          <li><span class="text-fog">○</span> <span class="text-bone">HDX / HAPI</span> <span class="text-fog">— planned</span></li>
+          <li class="flex items-baseline gap-3"><span class="w-2.5 h-2.5 rounded-full bg-teal inline-block shrink-0"></span><span><strong>UNHCR</strong> — يعمل الآن: ٤ مجموعات بيانات منذ 1951</span></li>
+          <li class="flex items-baseline gap-3 text-soft"><span class="w-2.5 h-2.5 rounded-full border border-soft inline-block shrink-0"></span><span>ReliefWeb — قادم</span></li>
+          <li class="flex items-baseline gap-3 text-soft"><span class="w-2.5 h-2.5 rounded-full border border-soft inline-block shrink-0"></span><span>HDX / HAPI — قادم</span></li>
         </ul>
-        <p class="mt-4 text-fog text-sm">A provider is one directory implementing one interface.
-        <a class="text-info hover:text-bone" href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/adding-providers.md">Add one ↗</a></p>
+        <p class="mt-5 text-sm text-soft">المزوّد مجلدٌ واحد يطبّق واجهةً واحدة —
+          <a class="text-teal border-b border-teal hover:text-ink hover:border-ink" href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/adding-providers.md">دليل الإضافة ↗</a></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── footer ──────────────────────────────────────────────── -->
-<footer class="max-w-6xl mx-auto px-5 py-12 text-xs text-fog flex flex-wrap gap-x-8 gap-y-3">
-  <span>Data © UNHCR, The UN Refugee Agency — <a class="text-info hover:text-bone" href="https://www.unhcr.org/refugee-statistics/">Refugee Data Finder ↗</a></span>
-  <span>Unofficial project, not affiliated with UNHCR</span>
-  <span>MIT License</span>
-  <a class="text-info hover:text-bone ml-auto" href="https://github.com/ahmedvnabil/humanitarian-mcp">github.com/ahmedvnabil/humanitarian-mcp ↗</a>
+<!-- ━━ التذييل ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<footer class="border-t-2 border-ink">
+  <div class="max-w-5xl mx-auto px-6 py-10 text-sm text-soft space-y-2">
+    <p>البيانات © مفوضية الأمم المتحدة السامية لشؤون اللاجئين —
+      <a class="text-teal border-b border-teal hover:text-ink hover:border-ink" href="https://www.unhcr.org/refugee-statistics/">Refugee Data Finder ↗</a>.
+      هذه الأرقام تمثل بشرًا؛ قدّمها بالعناية التي تستحق.</p>
+    <p>مشروع مستقل غير تابع للمفوضية · رخصة MIT ·
+      <a class="text-teal border-b border-teal hover:text-ink hover:border-ink" href="https://github.com/ahmedvnabil/humanitarian-mcp" dir="ltr">github.com/ahmedvnabil/humanitarian-mcp ↗</a></p>
+  </div>
 </footer>
 
 </body>
