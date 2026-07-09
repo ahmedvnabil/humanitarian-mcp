@@ -6,7 +6,7 @@
     <title>humanitarian-mcp — بيانات اللجوء والنزوح بين يدي مساعدك الذكي</title>
     <meta
       name="description"
-      content="خادم MCP مفتوح المصدر يمنح المساعدات الذكية وصولًا نظيفًا وموثّقًا لإحصاءات اللاجئين من مفوضية الأمم المتحدة — للباحثين والصحفيين ومنظمات الإغاثة. ١٧ أداة، بلا مفاتيح، يعمل دون اتصال."
+      content="خادم MCP مفتوح المصدر يمنح المساعدات الذكية وصولًا نظيفًا وموثّقًا لإحصاءات اللاجئين من مفوضية الأمم المتحدة — للباحثين والصحفيين ومنظمات الإغاثة. ١٧ أداة و٧ قوالب جاهزة، بلا مفاتيح، يعمل دون اتصال."
     />
     <meta
       property="og:title"
@@ -123,9 +123,10 @@
       <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center gap-x-8 gap-y-2">
         <span class="font-mono text-sm text-amber" dir="ltr">humanitarian-mcp</span>
         <nav class="mr-auto flex items-center gap-6 text-sm">
+          <a href="#why" class="text-fog hover:text-paper">لماذا؟</a>
           <a href="#who" class="text-fog hover:text-paper">لمن؟</a>
-          <a href="#research" class="text-fog hover:text-paper">للباحثين</a>
           <a href="#usage" class="text-fog hover:text-paper">التشغيل</a>
+          <a href="#workshops" class="text-fog hover:text-paper">الورشات</a>
           <a href="#honest" class="text-fog hover:text-paper">أين نقف؟</a>
           <a
             href="https://github.com/ahmedvnabil/humanitarian-mcp"
@@ -153,27 +154,36 @@
             <span class="text-amber">تصلك الأرقام</span> موثّقة.
           </h1>
           <p class="mt-7 text-fog text-lg max-w-xl animate-fadeup" style="animation-delay: 0.1s">
-            «قارن أعداد اللاجئين في مصر والأردن» — سؤال عادي تكتبه لـ Claude أو أي مساعد ذكي، فيتحول
-            تلقائيًا إلى استعلام دقيق في ٧٥ عامًا من بيانات مفوضية اللاجئين، ويرجع جدولًا مُسندًا
-            جاهزًا للنشر أو التحليل. بلا REST، بلا أكواد ملغومة، بلا مفاتيح.
+            «قارن أعداد اللاجئين في مصر والأردن» — سؤال عادي تكتبه لـ Claude أو Cursor أو أي عميل
+            يتحدث MCP.
+          </p>
+          <p class="mt-3 text-fog text-lg max-w-xl animate-fadeup" style="animation-delay: 0.12s">
+            يتحوّل تلقائيًا إلى استعلام دقيق في ٧٥ عامًا من بيانات مفوضية اللاجئين، ويعود جدولًا
+            مُسندًا جاهزًا للنشر أو التحليل — بلا REST، بلا مفاتيح، وبياناتك لا تغادر جهازك.
+          </p>
+          <p class="mt-4 text-sm text-fog animate-fadeup" style="animation-delay: 0.14s">
+            جديد على MCP؟ هو المعيار المفتوح الذي يمنح مساعدك أدوات خارجية آمنة — أشبه بقابس موحّد.
+            <a
+              class="text-amber hover:text-paper"
+              href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/how-mcp-works.md"
+              >كيف يعمل؟ ↗</a
+            >
           </p>
 
           <div
-            class="mt-9 flex items-stretch border border-inkline bg-ink2 max-w-xl animate-fadeup"
+            class="mt-9 flex flex-wrap gap-3 animate-fadeup"
             style="animation-delay: 0.15s"
-            dir="ltr"
           >
-            <code
-              id="install"
-              class="flex-1 px-4 py-3 text-sm font-mono text-paper overflow-x-auto whitespace-nowrap"
-              >git clone https://github.com/ahmedvnabil/humanitarian-mcp && cd humanitarian-mcp &&
-              npm i && npm run build</code
+            <a
+              href="#usage"
+              class="px-7 py-3 bg-amber text-ink font-bold text-sm hover:bg-paper"
+              >جاهز في دقيقتين ↓</a
             >
-            <button
-              class="px-5 text-xs font-body bg-amber text-ink font-bold hover:bg-paper"
-              @click="copy('install', document.getElementById('install').textContent)"
-              x-text="copied === 'install' ? '✓ اتنسخ' : 'انسخ'"
-            ></button>
+            <a
+              href="https://github.com/ahmedvnabil/humanitarian-mcp"
+              class="px-7 py-3 border-2 border-inkline text-paper font-semibold text-sm hover:border-amber hover:text-amber"
+              >⭐ تابعه على GitHub</a
+            >
           </div>
 
           <div
@@ -183,7 +193,7 @@
             <span><strong class="text-paper font-head text-2xl">17</strong> أداة</span>
             <span><strong class="text-paper font-head text-2xl">75</strong> عامًا من البيانات</span>
             <span><strong class="text-paper font-head text-2xl">0</strong> مفاتيح API</span>
-            <span><strong class="text-paper font-head text-2xl">99</strong> اختبارًا</span>
+            <span><strong class="text-paper font-head text-2xl">99</strong> لغمًا معطَّلًا</span>
           </div>
         </div>
 
@@ -263,75 +273,13 @@
       </div>
     </section>
 
-    <!-- ━━ ٠١ لمن هذا؟ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <section id="who" class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
-      <p class="font-mono text-teal text-sm mb-2" dir="ltr">01</p>
-      <h2 class="font-head font-bold text-3xl sm:text-4xl">مَن يستفيد؟ وكيف؟</h2>
-      <p class="mt-4 text-soft max-w-2xl">
-        كل من يحتاج رقمًا موثوقًا عن اللجوء والنزوح ولا يملك وقتًا (أو رغبة) لمصارعة واجهات REST:
-      </p>
-
-      <div class="mt-10 grid md:grid-cols-2 gap-px bg-rule border border-rule">
-        <div class="bg-card p-7">
-          <p class="font-head font-bold text-xl mb-1">الباحث الأكاديمي</p>
-          <p class="text-sm text-soft mb-4">
-            دراسات الهجرة القسرية · الاقتصاد السياسي · دراسات النزاع
-          </p>
-          <p class="text-sm">
-            <span class="text-teal font-bold">يسأل:</span> «هات سلسلة النازحين من السودان 2010–2025
-            كـ CSV مع تعليم السنوات الشاذة»
-          </p>
-          <p class="text-sm mt-2">
-            <span class="text-teal font-bold">يحصل على:</span> بيانات نظيفة جاهزة لـ R أو Stata أو
-            Python، بأكواد ISO موحدة، مع توثيق المصدر للاستشهاد — في ثوانٍ بدل يوم تنظيف بيانات.
-          </p>
-        </div>
-        <div class="bg-card p-7">
-          <p class="font-head font-bold text-xl mb-1">صحفي البيانات</p>
-          <p class="text-sm text-soft mb-4">تقارير استقصائية · متابعة الأزمات · تدقيق التصريحات</p>
-          <p class="text-sm">
-            <span class="text-teal font-bold">يسأل:</span> «هل فعلًا أوغندا من أكبر خمس دول مستقبلة
-            للاجئين هذا العام؟»
-          </p>
-          <p class="text-sm mt-2">
-            <span class="text-teal font-bold">يحصل على:</span> ترتيبًا محدثًا بأرقام رسمية (نعم —
-            ثالث أكبر مستضيف في 2025) + رسمًا جاهزًا للنشر + جملة الإسناد — قبل موعد التسليم.
-          </p>
-        </div>
-        <div class="bg-card p-7">
-          <p class="font-head font-bold text-xl mb-1">منظمة الإغاثة</p>
-          <p class="text-sm text-soft mb-4">كتابة المنح · مذكرات المانحين · تخطيط البرامج</p>
-          <p class="text-sm">
-            <span class="text-teal font-bold">تسأل:</span> «جهّز مذكرة مانحين عن الوضع في تشاد مع
-            التركيبة العمرية للوافدين»
-          </p>
-          <p class="text-sm mt-2">
-            <span class="text-teal font-bold">تحصل على:</span> تقرير Markdown كاملًا — أرقامًا
-            رئيسية، اتجاه عشر سنوات، نسب النساء والأطفال — جاهزًا للتحرير بدل أسبوع جمع يدوي.
-          </p>
-        </div>
-        <div class="bg-card p-7">
-          <p class="font-head font-bold text-xl mb-1">الطالب والمعلّم</p>
-          <p class="text-sm text-soft mb-4">أبحاث التخرج · العروض التقديمية · فصول علوم البيانات</p>
-          <p class="text-sm">
-            <span class="text-teal font-bold">يسأل:</span> «اشرح لي اتجاه لجوء السوريين آخر عشر سنين
-            برسم بياني بسيط»
-          </p>
-          <p class="text-sm mt-2">
-            <span class="text-teal font-bold">يحصل على:</span> شرحًا بلغة بسيطة + رسم Mermaid يلصقه
-            في العرض مباشرة — ومصدرًا يستطيع الرجوع إليه والتحقق منه.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ━━ ٠٢ الفخ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <section class="border-y border-rule bg-sand/50">
+    <!-- ━━ ٠١ الفخ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <section id="why" class="border-b border-rule bg-sand/50">
       <div
         class="max-w-6xl mx-auto px-6 py-16 lg:py-20 grid lg:grid-cols-[5fr,7fr] gap-10 items-center"
       >
         <div>
-          <p class="font-mono text-teal text-sm mb-2" dir="ltr">02</p>
+          <p class="font-mono text-teal text-sm mb-2" dir="ltr">01</p>
           <h2 class="font-head font-bold text-3xl leading-snug">
             لماذا لا يكفي أن «يعرف» الذكاء الاصطناعي الواجهة الرسمية؟
           </h2>
@@ -343,10 +291,11 @@
             بيانات».
           </p>
           <p class="mt-4 text-ink font-semibold">
-            هذا المشروع حفظ الألغام كلها مرة واحدة — وكل مساعد يتصل به يرث الحماية مجانًا.
+            هذا المشروع حفظ الألغام التسعة والتسعين كلها مرة واحدة — وكل مساعد يتصل به يرث الحماية
+            مجانًا.
           </p>
         </div>
-        <div class="border-2 border-ink">
+        <div class="border-2 border-ink min-w-0">
           <div class="p-5 bg-card border-b-2 border-ink" dir="ltr">
             <p class="text-xs font-semibold text-crisis mb-3 font-mono">RAW REST</p>
             <pre
@@ -366,124 +315,20 @@
       </div>
     </section>
 
-    <!-- ━━ ٠٣ للباحثين (شريط حبري) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <section id="research" class="bg-ink text-paper">
-      <div class="max-w-6xl mx-auto px-6 py-16 lg:py-24">
-        <p class="font-mono text-amber text-sm mb-2" dir="ltr">03</p>
-        <h2 class="font-head font-bold text-3xl sm:text-4xl">ثلاث ورشات جاهزة للباحثين</h2>
-        <p class="mt-4 text-fog max-w-2xl">
-          مسارات كاملة من السؤال البحثي إلى بيانات قابلة لإعادة الإنتاج والاستشهاد — بأرقام حقيقية،
-          لا أمثلة وهمية.
-        </p>
-
-        <div class="mt-12 space-y-14">
-          <!-- ورشة ١ -->
-          <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
-            <div>
-              <p class="font-head font-bold text-2xl text-amber">١ · دراسة أثر حدث</p>
-              <p class="mt-3 text-fog text-sm leading-relaxed">
-                <strong class="text-paper">السؤال:</strong> ماذا فعلت حرب أبريل 2023 بأعداد النازحين
-                من السودان؟<br /><br />
-                أداة تحليل الاتجاه تعطيك السلسلة كاملة، الانحدار الخطي،
-                <em class="text-paper">وتعلّم سنوات الكسر إحصائيًا</em> — ثم تصدّر CSV نظيفًا يدخل
-                مباشرة في نموذج الانقطاع الزمني عندك.
-              </p>
-            </div>
-            <div
-              class="bg-ink2 border border-inkline p-5 text-[13px] font-mono leading-6 overflow-x-auto"
-              dir="ltr"
-            >
-              <pre><span class="text-fog"># in the conversation</span>
-trend_analysis({ country: "Sudan", role: "origin", year_from: 2010 })
-<span class="text-amber">→ anomalies: [{ year: 2023, changePct: +78.8, zScore: 2.6 }]</span>
-
-export_data({ dataset: "population", country: "Sudan",
-              role: "origin", format: "csv", year_from: 2010 })
-
-<span class="text-fog"># then in Python</span>
-import pandas as pd
-df = pd.read_csv("sudan.csv")     <span class="text-fog"># country_code, year, refugees…</span>
-df["post_war"] = (df.year >= 2023).astype(int)
-<span class="text-fog"># interrupted time-series as usual</span></pre>
-            </div>
-          </div>
-
-          <!-- ورشة ٢ -->
-          <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
-            <div>
-              <p class="font-head font-bold text-2xl text-amber">٢ · مقارنة سياسات اللجوء</p>
-              <p class="mt-3 text-fog text-sm leading-relaxed">
-                <strong class="text-paper">السؤال:</strong> كيف تختلف نسب قبول طلبات اللجوء بين
-                الدول المستقبِلة؟<br /><br />
-                أداة القرارات تحسب نسبة الاعتراف تلقائيًا (معترف + حماية تكميلية ÷ القرارات
-                الموضوعية) لكل سنة ولكل دولة — المتغير التابع في أدبيات سياسات اللجوء، بلا حسابات
-                يدوية.
-              </p>
-            </div>
-            <div
-              class="bg-ink2 border border-inkline p-5 text-[13px] font-mono leading-6 overflow-x-auto"
-              dir="ltr"
-            >
-              <pre>asylum_decisions({ country: "Egypt", year_from: 2019 })
-<span class="text-amber">→ 2023: recognized 9,651 · rejected 1,977 · closed 4,375
-  recognition_rate: 83.0%</span>
-
-<span class="text-fog"># repeat per country, or batch-compare:</span>
-compare_countries({ countries: ["Egypt","Jordan","Uganda"],
-                    metric: "asylum_seekers" })</pre>
-            </div>
-          </div>
-
-          <!-- ورشة ٣ -->
-          <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
-            <div>
-              <p class="font-head font-bold text-2xl text-amber">٣ · التركيبة السكانية للاستجابة</p>
-              <p class="mt-3 text-fog text-sm leading-relaxed">
-                <strong class="text-paper">السؤال:</strong> ما حصة النساء والأطفال بين اللاجئين في
-                مصر؟ — الرقم الذي تُبنى عليه برامج الحماية والتعليم وتُكتب به المنح.<br /><br />
-                ناتج حقيقي من بيانات 2025، مع رسم جاهز للتقرير بأي صيغة تطلبها.
-              </p>
-            </div>
-            <div
-              class="bg-ink2 border border-inkline p-5 text-[13px] font-mono leading-6 overflow-x-auto"
-              dir="ltr"
-            >
-              <pre>demographics({ country: "Egypt" })
-<span class="text-amber">→ total: 1,098,306 · female: 54.2% · children (0–17): 39.1%</span>
-
-generate_chart({ countries: ["Egypt"], format: "svg" })
-<span class="text-fog"># → SVG ready to drop into the report</span></pre>
-            </div>
-          </div>
-        </div>
-
-        <p class="mt-12 text-sm text-fog border-t border-inkline pt-6">
-          الدليل الكامل بأمثلة R و Python وقواعد الاستشهاد:
-          <a
-            class="text-amber hover:text-paper"
-            href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/for-researchers.md"
-            dir="ltr"
-            >docs/for-researchers.md ↗</a
-          >
-          · وكل رقم يخرج ومعه سنة المرجع والمصدر — قابل للتحقق دائمًا من
-          <a class="text-amber hover:text-paper" href="https://www.unhcr.org/refugee-statistics/"
-            >Refugee Data Finder ↗</a
-          >
-        </p>
-      </div>
-    </section>
-
-    <!-- ━━ ٠٤ شاهده يجيب ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <section class="max-w-6xl mx-auto px-6 py-16 lg:py-20 grid lg:grid-cols-[4fr,8fr] gap-10">
+    <!-- ━━ ٠٢ شاهده يجيب ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <section
+      id="demo"
+      class="max-w-6xl mx-auto px-6 py-16 lg:py-20 grid lg:grid-cols-[4fr,8fr] gap-10"
+    >
       <div>
-        <p class="font-mono text-teal text-sm mb-2" dir="ltr">04</p>
+        <p class="font-mono text-teal text-sm mb-2" dir="ltr">02</p>
         <h2 class="font-head font-bold text-3xl leading-snug">شاهِده يُجيب.</h2>
         <p class="mt-5 text-soft">
           أنت تسأل بالعربي، المساعد يختار الأداة، والخادم يتكفل بالباقي — والأرقام أدناه حية من
           UNHCR.
         </p>
       </div>
-      <div class="border-2 border-ink bg-card">
+      <div class="border-2 border-ink bg-card min-w-0">
         <div
           class="px-5 py-3 border-b-2 border-ink flex items-center gap-3 text-xs text-soft bg-sand/60"
         >
@@ -515,13 +360,105 @@ generate_chart({ countries: ["Egypt"], format: "svg" })
       </div>
     </section>
 
-    <!-- ━━ ٠٥ التشغيل ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <!-- ━━ ٠٣ لمن هذا؟ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <section id="who" class="border-t border-rule">
+      <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <p class="font-mono text-teal text-sm mb-2" dir="ltr">03</p>
+        <h2 class="font-head font-bold text-3xl sm:text-4xl">مَن يستفيد؟ وكيف؟</h2>
+        <p class="mt-4 text-soft max-w-2xl">
+          كل من يحتاج رقمًا موثوقًا عن اللجوء والنزوح ولا يملك وقتًا (أو رغبة) لمصارعة واجهات REST:
+        </p>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-px bg-rule border border-rule">
+          <div class="bg-card p-7">
+            <p class="font-head font-bold text-xl mb-1">الباحث الأكاديمي</p>
+            <p class="text-sm text-soft mb-4">
+              دراسات الهجرة القسرية · الاقتصاد السياسي · دراسات النزاع
+            </p>
+            <p class="text-sm">
+              <span class="text-teal font-bold">يسأل:</span> «هات سلسلة النازحين من السودان
+              2010–2025 كـ CSV مع تعليم السنوات الشاذة»
+            </p>
+            <p class="text-sm mt-2">
+              <span class="text-teal font-bold">يحصل على:</span> بيانات نظيفة جاهزة لـ R أو Stata أو
+              Python، بأكواد ISO موحدة، مع توثيق المصدر للاستشهاد — في ثوانٍ بدل يوم تنظيف بيانات.
+            </p>
+          </div>
+          <div class="bg-card p-7">
+            <p class="font-head font-bold text-xl mb-1">صحفي البيانات</p>
+            <p class="text-sm text-soft mb-4">تقارير استقصائية · متابعة الأزمات · تدقيق التصريحات</p>
+            <p class="text-sm">
+              <span class="text-teal font-bold">يسأل:</span> «هل فعلًا أوغندا من أكبر خمس دول
+              مستقبلة للاجئين هذا العام؟»
+            </p>
+            <p class="text-sm mt-2">
+              <span class="text-teal font-bold">يحصل على:</span> ترتيبًا محدثًا بأرقام رسمية (نعم —
+              ثالث أكبر مستضيف في 2025) + رسمًا جاهزًا للنشر + جملة الإسناد — قبل موعد التسليم.
+            </p>
+          </div>
+          <div class="bg-card p-7">
+            <p class="font-head font-bold text-xl mb-1">منظمة الإغاثة</p>
+            <p class="text-sm text-soft mb-4">كتابة المنح · مذكرات المانحين · تخطيط البرامج</p>
+            <p class="text-sm">
+              <span class="text-teal font-bold">تسأل:</span> «جهّز مذكرة مانحين عن الوضع في تشاد مع
+              التركيبة العمرية للوافدين»
+            </p>
+            <p class="text-sm mt-2">
+              <span class="text-teal font-bold">تحصل على:</span> تقرير Markdown كاملًا عبر قالب
+              <code class="font-mono text-ink" dir="ltr">donor_briefing</code> المدمج — أرقامًا
+              رئيسية، اتجاه عشر سنوات، نسب النساء والأطفال — جاهزًا للتحرير بدل أسبوع جمع يدوي.
+            </p>
+          </div>
+          <div class="bg-card p-7">
+            <p class="font-head font-bold text-xl mb-1">الطالب والمعلّم</p>
+            <p class="text-sm text-soft mb-4">أبحاث التخرج · العروض التقديمية · فصول علوم البيانات</p>
+            <p class="text-sm">
+              <span class="text-teal font-bold">يسأل:</span> «اشرح لي اتجاه لجوء السوريين آخر عشر
+              سنين برسم بياني بسيط»
+            </p>
+            <p class="text-sm mt-2">
+              <span class="text-teal font-bold">يحصل على:</span> شرحًا بلغة بسيطة + رسم Mermaid
+              يلصقه في العرض مباشرة، ومصدرًا يمكن التحقق منه.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━ ٠٤ التشغيل ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <section id="usage" class="border-y border-rule bg-sand/50">
       <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
-        <p class="font-mono text-teal text-sm mb-2" dir="ltr">05</p>
+        <p class="font-mono text-teal text-sm mb-2" dir="ltr">04</p>
         <h2 class="font-head font-bold text-3xl sm:text-4xl">جاهز في دقيقتين.</h2>
+        <p class="mt-4 text-soft max-w-2xl">
+          كل ما تحتاجه مثبّتًا مسبقًا:
+          <a
+            class="text-teal border-b border-teal hover:text-ink hover:border-ink"
+            href="https://nodejs.org"
+            dir="ltr"
+            >Node.js 20+</a
+          >
+          و <span class="font-mono text-ink" dir="ltr">Git</span>. الخادم يعمل محليًا على جهازك،
+          قراءة فقط — لا تغادر أسئلتك ولا بياناتك الجهاز.
+        </p>
 
-        <div class="mt-8 flex flex-wrap gap-2 text-sm font-semibold">
+        <div class="mt-7 flex items-stretch border-2 border-ink bg-card max-w-3xl" dir="ltr">
+          <code
+            id="install"
+            class="flex-1 px-4 py-3 text-sm font-mono text-ink overflow-x-auto whitespace-nowrap"
+            >git clone https://github.com/ahmedvnabil/humanitarian-mcp && cd humanitarian-mcp &&
+            npm i && npm run build</code
+          >
+          <button
+            class="px-5 text-xs font-body bg-ink text-paper font-bold hover:bg-teal"
+            @click="copy('install', document.getElementById('install').textContent)"
+            x-text="copied === 'install' ? '✓ نُسخ' : 'انسخ'"
+          >
+            انسخ
+          </button>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-2 text-sm font-semibold">
           <button
             @click="tab='desktop'"
             :class="tab==='desktop' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'"
@@ -575,8 +512,10 @@ generate_chart({ countries: ["Egypt"], format: "svg" })
             <button
               class="mt-4 text-sm font-semibold border-2 border-ink px-5 py-2 bg-ink text-paper hover:bg-teal"
               @click="copy('desktop', document.getElementById('c-desktop').textContent)"
-              x-text="copied==='desktop' ? '✓ اتنسخ' : 'انسخ الإعداد'"
-            ></button>
+              x-text="copied==='desktop' ? '✓ نُسخ' : 'انسخ الإعداد'"
+            >
+              انسخ الإعداد
+            </button>
           </div>
 
           <div x-show="tab==='code'" class="p-6" style="display: none">
@@ -596,8 +535,10 @@ claude mcp add humanitarian -- node /path/to/humanitarian-mcp/dist/index.js</pre
             <button
               class="mt-5 text-sm font-semibold border-2 border-ink px-5 py-2 bg-ink text-paper hover:bg-teal"
               @click="copy('code', document.getElementById('c-code').textContent)"
-              x-text="copied==='code' ? '✓ اتنسخ' : 'انسخ الأمر'"
-            ></button>
+              x-text="copied==='code' ? '✓ نُسخ' : 'انسخ الأمر'"
+            >
+              انسخ الأمر
+            </button>
           </div>
 
           <div x-show="tab==='http'" class="p-6" style="display: none">
@@ -619,8 +560,10 @@ curl -s -X POST http://localhost:8642/mcp \
             <button
               class="mt-4 text-sm font-semibold border-2 border-ink px-5 py-2 bg-ink text-paper hover:bg-teal"
               @click="copy('http', document.getElementById('c-http').textContent)"
-              x-text="copied==='http' ? '✓ اتنسخ' : 'انسخ'"
-            ></button>
+              x-text="copied==='http' ? '✓ نُسخ' : 'انسخ'"
+            >
+              انسخ
+            </button>
           </div>
 
           <div x-show="tab==='dash'" class="p-6" style="display: none">
@@ -642,6 +585,119 @@ npm run dashboard
             </p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ━━ ٠٥ الورشات (شريط حبري) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <section id="workshops" class="bg-ink text-paper">
+      <div class="max-w-6xl mx-auto px-6 py-16 lg:py-24">
+        <p class="font-mono text-amber text-sm mb-2" dir="ltr">05</p>
+        <h2 class="font-head font-bold text-3xl sm:text-4xl">ثلاث ورشات — واحدة لكل مهنة</h2>
+        <p class="mt-4 text-fog max-w-2xl">
+          مسارات كاملة من السؤال إلى ناتج تسلّمه: للباحث، للصحفي، وللمنظمة — بأرقام حقيقية، لا
+          أمثلة وهمية.
+        </p>
+
+        <div class="mt-12 space-y-14">
+          <!-- ورشة ١ · الباحث -->
+          <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
+            <div>
+              <p class="font-head font-bold text-2xl text-amber">١ · للباحث: دراسة أثر حدث</p>
+              <p class="mt-3 text-fog text-sm leading-relaxed">
+                <strong class="text-paper">السؤال:</strong> ماذا فعلت حرب أبريل 2023 بأعداد النازحين
+                من السودان؟<br /><br />
+                أداة تحليل الاتجاه تعطيك السلسلة كاملة، الانحدار الخطي،
+                <em class="text-paper">وتعلّم سنوات الكسر إحصائيًا</em> — ثم تصدّر CSV نظيفًا يدخل
+                مباشرة في نموذج الانقطاع الزمني عندك.
+              </p>
+            </div>
+            <div
+              class="bg-ink2 border border-inkline p-5 text-[13px] font-mono leading-6 overflow-x-auto"
+              dir="ltr"
+            >
+              <pre><span class="text-fog"># in the conversation</span>
+trend_analysis({ country: "Sudan", role: "origin", year_from: 2010 })
+<span class="text-amber">→ anomalies: [{ year: 2023, changePct: +78.8, zScore: 2.6 }]</span>
+
+export_data({ dataset: "population", country: "Sudan",
+              role: "origin", format: "csv", year_from: 2010 })
+
+<span class="text-fog"># then in Python</span>
+import pandas as pd
+df = pd.read_csv("sudan.csv")     <span class="text-fog"># country_code, year, refugees…</span>
+df["post_war"] = (df.year >= 2023).astype(int)
+<span class="text-fog"># interrupted time-series as usual</span></pre>
+            </div>
+          </div>
+
+          <!-- ورشة ٢ · الصحفي -->
+          <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
+            <div>
+              <p class="font-head font-bold text-2xl text-amber">٢ · للصحفي: تدقيق تصريح قبل الموعد</p>
+              <p class="mt-3 text-fog text-sm leading-relaxed">
+                <strong class="text-paper">السؤال:</strong> مسؤول يقول إن أوغندا من أكبر خمس دول
+                مستقبلة للاجئين — هل ينشر التصريح كما هو؟<br /><br />
+                أداة الترتيب تعيد القائمة محدثة بأرقام UNHCR الرسمية، وأداة الرسم تسلّم SVG جاهزًا
+                للنشر مع جملة الإسناد — قبل إقفال العدد.
+              </p>
+            </div>
+            <div
+              class="bg-ink2 border border-inkline p-5 text-[13px] font-mono leading-6 overflow-x-auto"
+              dir="ltr"
+            >
+              <pre>top_host_countries({ metric: "refugees", year: 2025 })
+<span class="text-amber">→ Uganda: #3 globally (2025) — claim verified ✓</span>
+
+generate_chart({ countries: ["Uganda"], format: "svg" })
+<span class="text-fog"># → SVG ready to publish, source line included</span>
+
+<span class="text-fog"># fact-box footer, ready to paste:</span>
+<span class="text-fog"># "Source: UNHCR Refugee Data Finder, 2025"</span></pre>
+            </div>
+          </div>
+
+          <!-- ورشة ٣ · المنظمة -->
+          <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
+            <div>
+              <p class="font-head font-bold text-2xl text-amber">٣ · للمنظمة: مذكرة مانحين بالقالب المدمج</p>
+              <p class="mt-3 text-fog text-sm leading-relaxed">
+                <strong class="text-paper">السؤال:</strong> مطلوب مذكرة مانحين عن الوضع في تشاد،
+                والموعد الأسبوع القادم لا الشهر القادم.<br /><br />
+                قالب <span class="font-mono text-paper" dir="ltr">donor_briefing</span> المدمج يظهر
+                بنقرة في قائمة القوالب، ويقود المساعد إلى تسلسل الأدوات الصحيح — ومعه النسب التي
+                تُبنى عليها برامج الحماية والتعليم وتُكتب بها المنح.
+              </p>
+            </div>
+            <div
+              class="bg-ink2 border border-inkline p-5 text-[13px] font-mono leading-6 overflow-x-auto"
+              dir="ltr"
+            >
+              <pre><span class="text-fog"># built-in prompt — one click in Claude Desktop</span>
+donor_briefing({ country: "Chad", audience: "institutional donors" })
+<span class="text-amber">→ runs country_profile · trend_analysis · demographics
+→ delivers a Markdown briefing, ready to edit</span>
+
+<span class="text-fog"># the number programs are built on, directly:</span>
+demographics({ country: "Egypt" })
+<span class="text-amber">→ total: 1,098,306 · female: 54.2% · children (0–17): 39.1%</span></pre>
+            </div>
+          </div>
+        </div>
+
+        <p class="mt-12 text-sm text-fog border-t border-inkline pt-6">
+          الدليل الكامل بأمثلة R و Python وقواعد الاستشهاد:
+          <a
+            class="text-amber hover:text-paper"
+            href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/for-researchers.md"
+            dir="ltr"
+            >docs/for-researchers.md ↗</a
+          >
+          · كل رقم يخرج ومعه سنة المرجع والمصدر — قابل للتحقق دائمًا من
+          <a class="text-amber hover:text-paper" href="https://www.unhcr.org/refugee-statistics/"
+            >Refugee Data Finder ↗</a
+          >. <span class="text-paper">تنبيه للباحثين:</span> الأرقام أرصدة نهاية سنة، وقد تكون
+          أحدث السنوات تقديرات منتصف سنة أولية.
+        </p>
       </div>
     </section>
 
@@ -691,6 +747,12 @@ npm run dashboard
               <td class="p-3 text-teal font-bold">✓ مدمج</td>
             </tr>
             <tr class="border-b border-rule">
+              <td class="p-3 text-soft">تغطية منصة HDX (تمويل · أمن غذائي · نزاع)</td>
+              <td class="p-3">✗</td>
+              <td class="p-3 text-teal font-bold">✓ الأعمق اليوم</td>
+              <td class="p-3 text-soft">✗ قادمة على الخارطة — لسنا هناك بعد</td>
+            </tr>
+            <tr class="border-b border-rule">
               <td class="p-3 text-soft">رسوم جاهزة وخرائط GeoJSON</td>
               <td class="p-3">✗</td>
               <td class="p-3">✗</td>
@@ -709,7 +771,7 @@ npm run dashboard
               <td class="p-3 text-teal font-bold">✓</td>
             </tr>
             <tr>
-              <td class="p-3 text-soft">بنية مزوّدين قابلة للتوسع (ReliefWeb وHDX قادمان)</td>
+              <td class="p-3 text-soft">بنية مزوّدين قابلة للتوسع</td>
               <td class="p-3">✗ مصدر واحد</td>
               <td class="p-3">✗ مصدر واحد</td>
               <td class="p-3 text-teal font-bold">✓ منصة</td>
@@ -718,40 +780,144 @@ npm run dashboard
         </table>
       </div>
       <p class="mt-4 text-xs text-soft">
-        المقارنة بحسب المزايا المعلنة في مستودعات المشاريع، يوليو 2026 — راسلنا إن أخطأنا وسنصحح.
+        المقارنة بحسب المزايا المعلنة في مستودعات المشاريع، يوليو 2026 — ونُشير بوضوح حيث يتفوق
+        غيرنا. راسلنا إن أخطأنا وسنصحح.
       </p>
     </section>
 
-    <!-- ━━ الأدوات (مضغوطة) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <section class="border-t border-rule bg-sand/50">
-      <div class="max-w-6xl mx-auto px-6 py-12">
-        <p class="text-sm text-soft leading-loose">
-          <strong class="text-ink">الأدوات السبع عشرة:</strong>
-          <span class="font-mono text-[13px] text-teal" dir="ltr"
-            >search_country · country_profile · compare_countries · refugee_population ·
-            demographics · latest_statistics · asylum_applications · asylum_decisions ·
-            trend_analysis · forecast · top_host_countries · generate_chart · generate_map ·
-            generate_country_report · export_data · get_metadata · provider_health</span
+    <!-- ━━ ٠٧ الرؤية وما في الصندوق ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <section id="vision" class="border-t border-rule bg-sand/50">
+      <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <p class="font-mono text-teal text-sm mb-2" dir="ltr">07</p>
+        <h2 class="font-head font-bold text-3xl sm:text-4xl">
+          اليوم UNHCR. غدًا <span class="text-teal">طبقة واحدة</span> للبيانات الإنسانية.
+        </h2>
+        <p class="mt-4 text-soft max-w-3xl">
+          بنية المزوّدين إضافية: كل مصدر جديد مجلدٌ واحد يطبّق واجهةً واحدة —
+          <a
+            class="text-teal border-b border-teal hover:text-ink hover:border-ink"
+            href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/adding-providers.md"
+            dir="ltr"
+            >والدليل خطوة بخطوة ↗</a
+          >. وحزمة <code class="font-mono text-ink" dir="ltr">npx humanitarian-mcp</code> قادمة:
+          تشغيل بلا استنساخ.
+        </p>
+
+        <div class="mt-7 flex flex-wrap gap-2 text-sm">
+          <span class="px-4 py-1.5 border-2 border-teal text-teal font-bold">UNHCR — متاح الآن</span>
+          <span class="px-4 py-1.5 border border-rule text-soft bg-card">ReliefWeb — قادم</span>
+          <span class="px-4 py-1.5 border border-rule text-soft bg-card">HDX / HAPI — قادم</span>
+          <span class="px-4 py-1.5 border border-rule text-soft bg-card">IDMC — قادم</span>
+          <span class="px-4 py-1.5 border border-rule text-soft bg-card"
+            >World Bank / OWID — قادم</span
           >
-          — المرجع الكامل في
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-3 gap-px bg-rule border border-rule">
+          <div class="bg-card p-6">
+            <p class="font-head font-bold text-lg">١٧ أداة دلالية</p>
+            <p class="mt-2 text-[13px] font-mono text-teal leading-6" dir="ltr">
+              search_country · country_profile · compare_countries · refugee_population ·
+              demographics · latest_statistics · asylum_applications · asylum_decisions ·
+              trend_analysis · forecast · top_host_countries · generate_chart · generate_map ·
+              generate_country_report · export_data · get_metadata · provider_health
+            </p>
+          </div>
+          <div class="bg-card p-6">
+            <p class="font-head font-bold text-lg">٧ قوالب بنقرة واحدة</p>
+            <p class="mt-2 text-sm text-soft">
+              مسارات جاهزة تظهر في قائمة القوالب لدى العميل — من ملخص الوضع إلى مذكرة المانحين:
+            </p>
+            <p class="mt-2 text-[13px] font-mono text-teal leading-6" dir="ltr">
+              summarize_situation · compare_two_countries · donor_briefing · explain_trends ·
+              find_anomalies · executive_report · infographic_summary
+            </p>
+          </div>
+          <div class="bg-card p-6">
+            <p class="font-head font-bold text-lg">١١+ موردًا مباشرًا</p>
+            <p class="mt-2 text-sm text-soft">
+              عناوين يقرأها العميل كملفات — لمحة دولة أو تقرير كامل أو رسم:
+            </p>
+            <p class="mt-2 text-[13px] font-mono text-teal leading-6" dir="ltr">
+              country://EGY · report://SDN · chart://UGA · dataset://population ·
+              metadata://providers · …
+            </p>
+          </div>
+        </div>
+
+        <p class="mt-6 text-sm text-soft max-w-3xl">
+          وكل أداة تعلن مخططَ مخرجاتها وتعيد بيانات منظّمة إلى جانب النص — تحت ٩٩ اختبارًا، منها
+          حزمة توافق MCP كاملة عبر عميل SDK الرسمي.
           <a
             class="text-teal border-b border-teal hover:text-ink hover:border-ink"
             href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/tools.md"
             dir="ltr"
-            >docs/tools.md ↗</a
+            >المرجع الكامل: docs/tools.md ↗</a
           >
         </p>
+
+        <a
+          href="https://github.com/ahmedvnabil/humanitarian-mcp"
+          class="mt-7 inline-block px-7 py-3 border-2 border-ink bg-ink text-paper font-bold text-sm hover:bg-teal hover:border-teal"
+          >⭐ ضع نجمة لتتابع وصول المزوّدين الجدد</a
+        >
+      </div>
+    </section>
+
+    <!-- ━━ الختام: الاقتباس + مَن خلفه + الدعوة الأخيرة ━━━━━━━━ -->
+    <section class="bg-ink text-paper border-t-4 border-amber">
+      <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <p
+          class="font-head font-bold leading-snug max-w-3xl"
+          style="font-size: clamp(1.6rem, 3.5vw, 2.6rem)"
+        >
+          هذه الأرقام تمثّل بشرًا؛<br />
+          <span class="text-amber">قدِّمها بالعناية التي تستحق.</span>
+        </p>
+
+        <p class="mt-8 text-sm text-fog max-w-2xl">
+          <span class="text-paper font-semibold">مَن يقف خلف المشروع؟</span> يبنيه ويصونه
+          <a class="text-amber hover:text-paper" href="https://github.com/ahmedvnabil"
+            >أحمد نبيل</a
+          >
+          <span class="font-mono" dir="ltr">(@ahmedvnabil)</span> — مطوّر مستقل، وصاحب خط «زاد»
+          العربي المفتوح الذي كُتبت به هذه الصفحة. المستودع مفتوح بالكامل برخصة MIT، والمساهمات
+          والمراجعات مرحّب بها.
+        </p>
+
+        <div class="mt-10 border-t border-inkline pt-8">
+          <p class="font-head font-bold text-2xl">جرّبه الليلة — قبل تقرير الغد.</p>
+          <div class="mt-5 flex flex-wrap items-stretch gap-3">
+            <button
+              class="px-7 py-3 bg-amber text-ink font-bold text-sm hover:bg-paper"
+              @click="copy('final', document.getElementById('install').textContent)"
+              x-text="copied==='final' ? '✓ نُسخ — الصقه في الطرفية' : 'انسخ أمر التثبيت'"
+            >
+              انسخ أمر التثبيت
+            </button>
+            <a
+              href="https://github.com/ahmedvnabil/humanitarian-mcp"
+              class="px-7 py-3 border-2 border-inkline text-paper font-semibold text-sm hover:border-amber hover:text-amber"
+              >⭐ ضع نجمة على GitHub</a
+            >
+            <a
+              href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/for-researchers.md"
+              class="px-7 py-3 border-2 border-inkline text-paper font-semibold text-sm hover:border-amber hover:text-amber"
+              >اقرأ دليل الباحثين ↗</a
+            >
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ━━ التذييل ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <footer class="bg-ink text-fog">
+    <footer class="bg-ink text-fog border-t border-inkline">
       <div class="max-w-6xl mx-auto px-6 py-10 text-sm space-y-2">
         <p>
           البيانات © مفوضية الأمم المتحدة السامية لشؤون اللاجئين —
           <a class="text-amber hover:text-paper" href="https://www.unhcr.org/refugee-statistics/"
             >Refugee Data Finder ↗</a
-          >. <span class="text-paper">هذه الأرقام تمثل بشرًا؛ قدّمها بالعناية التي تستحق.</span>
+          >
         </p>
         <p>
           مشروع مستقل غير تابع للمفوضية · رخصة MIT ·
