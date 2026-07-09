@@ -217,7 +217,7 @@
   <body
     class="bg-paper text-ink font-body leading-relaxed antialiased"
     x-data="{
-        tab: 'desktop',
+        tab: 'hosted',
         copied: '',
         copy(id, text) {
           navigator.clipboard.writeText(text);
@@ -274,8 +274,8 @@
             وسنته، ومصدره.
           </p>
           <p class="mt-3 text-fog text-lg max-w-xl animate-fadeup" style="animation-delay: 0.12s">
-            تكتب «قارن أعداد اللاجئين في مصر والأردن» كما تكتب أي رسالة، فيصلك جدول موثّق جاهز
-            للنشر أو التحليل. لا برمجة، لا حسابات، وبياناتك لا تغادر جهازك.
+            تكتب «قارن أعداد اللاجئين في مصر والأردن» كما تكتب أي رسالة، فيصلك جدول موثّق جاهز للنشر
+            أو التحليل. لا برمجة، لا حسابات، وبياناتك لا تغادر جهازك.
           </p>
           <p class="mt-4 text-sm text-fog animate-fadeup" style="animation-delay: 0.14s">
             يعمل عبر بروتوكول MCP: المعيار المفتوح الذي يمنح مساعدك أدوات خارجية آمنة، أشبه بقابس
@@ -287,13 +287,8 @@
             >
           </p>
 
-          <div
-            class="mt-9 flex flex-wrap gap-3 animate-fadeup"
-            style="animation-delay: 0.15s"
-          >
-            <a
-              href="#usage"
-              class="px-7 py-3 bg-amber text-ink font-bold text-sm hover:bg-paper"
+          <div class="mt-9 flex flex-wrap gap-3 animate-fadeup" style="animation-delay: 0.15s">
+            <a href="#usage" class="px-7 py-3 bg-amber text-ink font-bold text-sm hover:bg-paper"
               >جاهز في دقيقتين ↓</a
             >
             <a
@@ -435,9 +430,7 @@
             <p class="text-xs font-semibold text-amber mb-3">
               مع <span class="font-mono" dir="ltr">humanitarian-mcp</span>
             </p>
-            <p class="text-sm">
-              <span class="text-teal font-bold">أنت ‹</span> السؤال نفسه.
-            </p>
+            <p class="text-sm"><span class="text-teal font-bold">أنت ‹</span> السؤال نفسه.</p>
             <p class="mt-2 text-sm text-fog">
               المساعد › «<strong class="text-amber" dir="ltr">220,033</strong> لاجئًا مسجلًا في مصر
               نهاية 2025 — المصدر: مفوضية اللاجئين، Refugee Data Finder.»
@@ -522,7 +515,9 @@
           </div>
           <div class="bg-card p-7">
             <p class="font-head font-bold text-xl mb-1">صحفي البيانات</p>
-            <p class="text-sm text-soft mb-4">تقارير استقصائية · متابعة الأزمات · تدقيق التصريحات</p>
+            <p class="text-sm text-soft mb-4">
+              تقارير استقصائية · متابعة الأزمات · تدقيق التصريحات
+            </p>
             <p class="text-sm">
               <span class="text-teal font-bold">يسأل:</span> «هل فعلًا أوغندا من أكبر خمس دول
               مستقبلة للاجئين هذا العام؟»
@@ -547,7 +542,9 @@
           </div>
           <div class="bg-card p-7">
             <p class="font-head font-bold text-xl mb-1">الطالب والمعلّم</p>
-            <p class="text-sm text-soft mb-4">أبحاث التخرج · العروض التقديمية · فصول علوم البيانات</p>
+            <p class="text-sm text-soft mb-4">
+              أبحاث التخرج · العروض التقديمية · فصول علوم البيانات
+            </p>
             <p class="text-sm">
               <span class="text-teal font-bold">يسأل:</span> «اشرح لي اتجاه لجوء السوريين آخر عشر
               سنين برسم بياني بسيط»
@@ -567,8 +564,9 @@
         <p class="font-mono text-teal text-sm mb-2" dir="ltr">04</p>
         <h2 class="font-head font-bold text-3xl sm:text-4xl">جاهز في دقيقتين.</h2>
         <p class="mt-4 text-soft max-w-2xl">
-          لا يحتاج الأمر مبرمجًا — تثبيت يُنجز مرة واحدة في ثلاث خطوات، وكل شيء يعمل على جهازك
-          أنت: لا تغادر أسئلتك ولا بياناتك الجهاز.
+          أسرع طريق: تبويب <strong class="text-ink">«بدون تثبيت»</strong> أدناه — رابط جاهز نستضيفه
+          لك، تلصقه وتبدأ في ثوانٍ. أو ثبّته على جهازك في ثلاث خطوات لا تحتاج مبرمجًا، فتبقى أسئلتك
+          وبياناتك على جهازك بالكامل.
         </p>
 
         <ol class="mt-7 space-y-3 text-sm max-w-2xl">
@@ -590,8 +588,8 @@
             إن لم يكونا على جهازك — برنامجان مجانيان بتثبيت عادي بالنقر.
           </li>
           <li>
-            <strong class="font-head text-teal">٢ ·</strong> افتح تطبيق «الطرفية» (Terminal —
-            موجود في كل ماك وويندوز ولينكس)، والصق هذا السطر واضغط Enter:
+            <strong class="font-head text-teal">٢ ·</strong> افتح تطبيق «الطرفية» (Terminal — موجود
+            في كل ماك وويندوز ولينكس)، والصق هذا السطر واضغط Enter:
           </li>
         </ol>
 
@@ -599,8 +597,8 @@
           <code
             id="install"
             class="flex-1 px-4 py-3 text-sm font-mono text-ink overflow-x-auto whitespace-nowrap"
-            >git clone https://github.com/ahmedvnabil/humanitarian-mcp && cd humanitarian-mcp &&
-            npm i && npm run build</code
+            >git clone https://github.com/ahmedvnabil/humanitarian-mcp && cd humanitarian-mcp && npm
+            i && npm run build</code
           >
           <button
             class="px-5 text-xs font-body bg-ink text-paper font-bold hover:bg-teal"
@@ -617,6 +615,13 @@
         </p>
 
         <div class="mt-4 flex flex-wrap gap-2 text-sm font-semibold">
+          <button
+            @click="tab='hosted'"
+            :class="tab==='hosted' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'"
+            class="px-5 py-2.5 border-2 border-ink"
+          >
+            بدون تثبيت
+          </button>
           <button
             @click="tab='desktop'"
             :class="tab==='desktop' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'"
@@ -648,7 +653,44 @@
         </div>
 
         <div class="mt-4 border-2 border-ink bg-card">
-          <div x-show="tab==='desktop'" class="p-6">
+          <div x-show="tab==='hosted'" class="p-6">
+            <p class="text-soft text-sm mb-4">
+              نسخة مستضافة جاهزة — بلا طرفية وبلا تثبيت. انسخ الرابط وألصقه في برنامجك:
+            </p>
+            <div class="flex items-stretch border-2 border-ink bg-paper max-w-2xl" dir="ltr">
+              <code
+                id="c-hosted"
+                class="flex-1 px-4 py-3 text-sm font-mono text-ink overflow-x-auto whitespace-nowrap"
+                >https://humanitarian-mcp.zad.tools/mcp</code
+              >
+              <button
+                class="px-5 text-xs font-body bg-ink text-paper font-bold hover:bg-teal"
+                @click="copy('hosted', document.getElementById('c-hosted').textContent)"
+                x-text="copied==='hosted' ? '✓ نُسخ' : 'انسخ'"
+              >
+                انسخ
+              </button>
+            </div>
+            <ul class="mt-5 text-sm space-y-3">
+              <li>
+                <strong class="text-ink">في Claude (الموقع أو التطبيق):</strong> الإعدادات ←
+                Connectors ← Add custom connector ← الصق الرابط.
+              </li>
+              <li>
+                <strong class="text-ink">في Claude Code:</strong>
+                <code class="font-mono text-[13px] bg-paper border border-rule px-2 py-1" dir="ltr"
+                  >claude mcp add --transport http humanitarian
+                  https://humanitarian-mcp.zad.tools/mcp</code
+                >
+              </li>
+            </ul>
+            <p class="mt-5 text-xs text-soft">
+              النسخة المستضافة تمرّر أسئلتك عبر خادمنا (بلا حسابات ولا تتبّع، والبيانات عامة أصلًا).
+              للخصوصية الكاملة أو للعمل دون اتصال، استخدم التثبيت المحلي بالخطوات أعلاه.
+            </p>
+          </div>
+
+          <div x-show="tab==='desktop'" class="p-6" style="display: none">
             <p class="text-soft text-sm mb-4">
               أضِف هذا إلى
               <code class="font-mono text-ink" dir="ltr">claude_desktop_config.json</code> وأعد
@@ -752,8 +794,8 @@ npm run dashboard
         <p class="font-mono text-amber text-sm mb-2" dir="ltr">05</p>
         <h2 class="font-head font-bold text-3xl sm:text-4xl">ثلاث ورشات — واحدة لكل مهنة</h2>
         <p class="mt-4 text-fog max-w-2xl">
-          مسارات كاملة من السؤال إلى ناتج تسلّمه: للباحث، للصحفي، وللمنظمة — بأرقام حقيقية، لا
-          أمثلة وهمية. وتذكّر: الأسطر الداكنة أدناه يكتبها المساعد بنفسه خلف الكواليس؛
+          مسارات كاملة من السؤال إلى ناتج تسلّمه: للباحث، للصحفي، وللمنظمة — بأرقام حقيقية، لا أمثلة
+          وهمية. وتذكّر: الأسطر الداكنة أدناه يكتبها المساعد بنفسه خلف الكواليس؛
           <span class="text-paper">أنت تكتب السؤال العربي فقط.</span>
         </p>
 
@@ -792,7 +834,9 @@ df["post_war"] = (df.year >= 2023).astype(int)
           <!-- ورشة ٢ · الصحفي -->
           <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
             <div>
-              <p class="font-head font-bold text-2xl text-amber">٢ · للصحفي: تدقيق تصريح قبل الموعد</p>
+              <p class="font-head font-bold text-2xl text-amber">
+                ٢ · للصحفي: تدقيق تصريح قبل الموعد
+              </p>
               <p class="mt-3 text-fog text-sm leading-relaxed">
                 <strong class="text-paper">السؤال:</strong> مسؤول يقول إن أوغندا من أكبر خمس دول
                 مستقبلة للاجئين — هل ينشر التصريح كما هو؟<br /><br />
@@ -818,7 +862,9 @@ generate_chart({ countries: ["Uganda"], format: "svg" })
           <!-- ورشة ٣ · المنظمة -->
           <div class="grid lg:grid-cols-[4fr,8fr] gap-8">
             <div>
-              <p class="font-head font-bold text-2xl text-amber">٣ · للمنظمة: مذكرة مانحين بالقالب المدمج</p>
+              <p class="font-head font-bold text-2xl text-amber">
+                ٣ · للمنظمة: مذكرة مانحين بالقالب المدمج
+              </p>
               <p class="mt-3 text-fog text-sm leading-relaxed">
                 <strong class="text-paper">السؤال:</strong> مطلوب مذكرة مانحين عن الوضع في تشاد،
                 والموعد الأسبوع القادم لا الشهر القادم.<br /><br />
@@ -854,8 +900,8 @@ demographics({ country: "Egypt" })
           · كل رقم يخرج ومعه سنة المرجع والمصدر — قابل للتحقق دائمًا من
           <a class="text-amber hover:text-paper" href="https://www.unhcr.org/refugee-statistics/"
             >Refugee Data Finder ↗</a
-          >. <span class="text-paper">تنبيه للباحثين:</span> الأرقام أرصدة نهاية سنة، وقد تكون
-          أحدث السنوات تقديرات منتصف سنة أولية.
+          >. <span class="text-paper">تنبيه للباحثين:</span> الأرقام أرصدة نهاية سنة، وقد تكون أحدث
+          السنوات تقديرات منتصف سنة أولية.
         </p>
         <button
           class="mt-4 text-sm font-semibold border border-inkline px-5 py-2 text-fog hover:text-paper hover:border-amber"
@@ -885,8 +931,8 @@ demographics({ country: "Egypt" })
           href="https://github.com/dividor/hdx-mcp"
           dir="ltr"
           >dividor/hdx-mcp</a
-        >). لكنها تمرّر البيانات الخام كما هي — على مستخدمها أن يعرف الرموز ويحسب النسب ويرسم
-        بنفسه. هذا المشروع بُني ليكون <strong class="text-ink">طبقة الفهم</strong>، لا مجرد ناقل:
+        >). لكنها تمرّر البيانات الخام كما هي — على مستخدمها أن يعرف الرموز ويحسب النسب ويرسم بنفسه.
+        هذا المشروع بُني ليكون <strong class="text-ink">طبقة الفهم</strong>، لا مجرد ناقل:
       </p>
 
       <div class="mt-8 overflow-x-auto">
@@ -971,7 +1017,9 @@ demographics({ country: "Egypt" })
         </p>
 
         <div class="mt-7 flex flex-wrap gap-2 text-sm">
-          <span class="px-4 py-1.5 border-2 border-teal text-teal font-bold">UNHCR — متاح الآن</span>
+          <span class="px-4 py-1.5 border-2 border-teal text-teal font-bold"
+            >UNHCR — متاح الآن</span
+          >
           <span class="px-4 py-1.5 border border-rule text-soft bg-card">ReliefWeb — قادم</span>
           <span class="px-4 py-1.5 border border-rule text-soft bg-card">HDX / HAPI — قادم</span>
           <span class="px-4 py-1.5 border border-rule text-soft bg-card">IDMC — قادم</span>
@@ -1050,8 +1098,8 @@ demographics({ country: "Egypt" })
               >
             </summary>
             <p class="pb-5 text-sm text-soft leading-relaxed">
-              برامج المحادثة بالذكاء الاصطناعي: تكتب لها سؤالًا فتجيبك. أشهر ما تعمل معه هذه
-              الإضافة تطبيق
+              برامج المحادثة بالذكاء الاصطناعي: تكتب لها سؤالًا فتجيبك. أشهر ما تعمل معه هذه الإضافة
+              تطبيق
               <a
                 class="text-teal border-b border-teal hover:text-ink hover:border-ink"
                 href="https://claude.ai/download"
@@ -1094,7 +1142,9 @@ demographics({ country: "Egypt" })
             </summary>
             <p class="pb-5 text-sm text-soft leading-relaxed">
               لا. التثبيت أمرٌ واحد في الطرفية وملف إعداد واحد — قسم
-              <a class="text-teal border-b border-teal hover:text-ink hover:border-ink" href="#usage"
+              <a
+                class="text-teal border-b border-teal hover:text-ink hover:border-ink"
+                href="#usage"
                 >«التشغيل»</a
               >
               أعلاه يشرحه خطوة بخطوة. بعد ذلك كل شيء يجري بلغتك الطبيعية داخل المحادثة.
@@ -1188,9 +1238,7 @@ demographics({ country: "Egypt" })
 
         <p class="mt-8 text-sm text-fog max-w-2xl">
           <span class="text-paper font-semibold">مَن يقف خلف المشروع؟</span> يبنيه ويصونه
-          <a class="text-amber hover:text-paper" href="https://github.com/ahmedvnabil"
-            >أحمد نبيل</a
-          >
+          <a class="text-amber hover:text-paper" href="https://github.com/ahmedvnabil">أحمد نبيل</a>
           <span class="font-mono" dir="ltr">(@ahmedvnabil)</span> — مطوّر مستقل، وصاحب خط «زاد»
           العربي المفتوح الذي كُتبت به هذه الصفحة. المستودع مفتوح بالكامل برخصة MIT، والمساهمات
           والمراجعات مرحّب بها.
