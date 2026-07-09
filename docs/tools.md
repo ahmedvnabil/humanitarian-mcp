@@ -16,7 +16,9 @@ Conventions shared by every tool:
 - Every tool returns markdown `content` plus `structuredContent` matching its
   declared `outputSchema`, and is annotated `readOnlyHint: true`.
 - Source figures are end-year stocks from the UNHCR Refugee Data Finder;
-  context indicators come from the World Bank (CC BY 4.0).
+  context indicators come from the World Bank (CC BY 4.0); crisis datasets
+  (conflict, food security, funding, IDPs) come via HDX HAPI and cite their
+  original producers (ACLED, IPC, OCHA FTS, IOM DTM).
 
 ---
 
@@ -64,6 +66,26 @@ Latest available year only (UNHCR publishes recent demographics only).
 → `{ yearly: [{ year, recognized, complementary, rejected, closed, total, recognition_rate_pct }] }`
 Recognition rate = (recognized + complementary) / substantive decisions.
 
+### conflict_events
+
+`country` · `year_from` · `year_to` — requires the `hdx` provider
+→ `{ country, country_code, records: [{ year, events, fatalities }] }`
+Annual totals (monthly/event-type rows already summed). Source: ACLED via HDX.
+
+### food_security
+
+`country` · `year?` (default latest) — requires the `hdx` provider
+→ `{ country, year, phases{ipc_phase_1..5, ipc_phase_3plus, analyzed_population}, people_crisis_or_worse }`
+Latest current IPC analysis (projections excluded when a current one exists);
+the headline is phase 3+ — people in crisis or worse. Source: IPC via HDX.
+
+### humanitarian_funding
+
+`country` · `year_from` · `year_to` — requires the `hdx` provider
+→ `{ country, records: [{ year, requirements_usd, funding_usd, coverage_pct? }] }`
+Appeals are summed per year and coverage recomputed from the sums (never
+averaged). Source: OCHA FTS via HDX.
+
 ### trend_analysis
 
 `country` · `metric` · `role` · `year_from` · `year_to`
@@ -106,7 +128,7 @@ asylum decisions, demographics, method notes. Emits 5 MCP progress notifications
 
 ### export_data
 
-`dataset` (`population`|`demographics`|`asylum-applications`|`asylum-decisions`|`context-indicators`) ·
+`dataset` (`population`|`demographics`|`asylum-applications`|`asylum-decisions`|`context-indicators`|`idps`|`conflict-events`|`humanitarian-funding`|`food-security`) ·
 `format` (`csv`|`json`|`markdown`|`geojson`) · `country?` · `role` · `group_by` ·
 `year_from` · `year_to` · `limit` (≤5000, default 500) · `include_manifest` (default true)
 → `{ dataset, format, row_count, truncated, data, manifest? }`
