@@ -57,6 +57,14 @@
         "mainEntity": [
           {
             "@type": "Question",
+            "name": "ما «المساعد الذكي» المقصود هنا؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "برامج المحادثة بالذكاء الاصطناعي التي تكتب لها سؤالًا فتجيبك — أشهرها تطبيق Claude Desktop المجاني، وتعمل الإضافة مع أي برنامج يدعم معيار MCP المفتوح."
+            }
+          },
+          {
+            "@type": "Question",
             "name": "هل الاستخدام مجاني؟",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -260,13 +268,14 @@
             <span class="text-amber">يجيبك برقم الأمم المتحدة</span>&nbsp;موثّقًا.
           </h1>
           <p class="mt-7 text-fog text-lg max-w-xl animate-fadeup" style="animation-delay: 0.1s">
-            <span class="font-mono text-paper" dir="ltr">humanitarian-mcp</span> أداة تعمل على
-            جهازك تربط Claude — أو أي مساعد ذكي — بقاعدة بيانات مفوضية اللاجئين مباشرة: فبدل أن
-            يخمّن المساعد أو يعتذر، يستعلم من المصدر الرسمي ويعيد الرقم بسنته ومرجعه.
+            <span class="font-mono text-paper" dir="ltr">humanitarian-mcp</span> إضافة مجانية
+            تركّبها مرة واحدة لبرنامج الذكاء الاصطناعي الذي تحادثه (مثل Claude)، فيتوقف عن التخمين
+            في أسئلة اللجوء والنزوح ويجيب مباشرة من قاعدة بيانات مفوضية اللاجئين — بالرقم الحقيقي،
+            وسنته، ومصدره.
           </p>
           <p class="mt-3 text-fog text-lg max-w-xl animate-fadeup" style="animation-delay: 0.12s">
-            «قارن أعداد اللاجئين في مصر والأردن» — تكتبها كما هي في المحادثة، فيصلك جدول مُسند
-            جاهز للنشر أو التحليل. بلا برمجة، بلا مفاتيح، وبياناتك لا تغادر جهازك.
+            تكتب «قارن أعداد اللاجئين في مصر والأردن» كما تكتب أي رسالة، فيصلك جدول موثّق جاهز
+            للنشر أو التحليل. لا برمجة، لا حسابات، وبياناتك لا تغادر جهازك.
           </p>
           <p class="mt-4 text-sm text-fog animate-fadeup" style="animation-delay: 0.14s">
             يعمل عبر بروتوكول MCP: المعيار المفتوح الذي يمنح مساعدك أدوات خارجية آمنة، أشبه بقابس
@@ -389,35 +398,53 @@
         <div>
           <p class="font-mono text-teal text-sm mb-2" dir="ltr">01</p>
           <h2 class="font-head font-bold text-3xl leading-snug">
-            لماذا لا يكفي أن «يعرف» الذكاء الاصطناعي الواجهة الرسمية؟
+            لماذا يخطئ الذكاء الاصطناعي في أرقام اللجوء؟
           </h2>
           <p class="mt-5 text-soft">
-            لأنها ملغومة: مفوضية اللاجئين تستخدم أكواد دول خاصة تخالف معيار ISO في
-            <strong class="text-ink">٩٩ دولة من ٢٣٢</strong>. كود مصر عندهم
-            <span class="font-mono text-crisis" dir="ltr">ARE</span> — وهو كود <em>الإمارات</em> في
-            بقية العالم. والخطأ لا يُنتج تحذيرًا؛ بل مصفوفة فارغة، فيجيب مساعدك بثقة: «لا توجد
-            بيانات».
+            جرّبها الآن: اسأل أي برنامج ذكاء اصطناعي عن عدد اللاجئين في بلدك. غالبًا ستحصل على رقم
+            قديم من ذاكرة تدريبه، أو تقدير فضفاض، أو اعتذار مهذب.
+          </p>
+          <p class="mt-4 text-soft">
+            وحتى المساعد الذي يحاول سؤال قاعدة الأمم المتحدة بنفسه يقع في فخّها: فهي ترمّز الدول
+            برموز خاصة تخالف المعيار العالمي في
+            <strong class="text-ink">٩٩ دولة من ٢٣٢</strong> — رمز مصر عندها
+            <span class="font-mono text-crisis" dir="ltr">ARE</span> وهو رمز <em>الإمارات</em> في
+            بقية العالم — والسؤال الخاطئ لا يُعيد تنبيهًا بل قائمة فارغة، فيجيبك المساعد بثقة: «لا
+            توجد بيانات».
           </p>
           <p class="mt-4 text-ink font-semibold">
-            هذا المشروع حفظ الألغام التسعة والتسعين كلها مرة واحدة — وكل مساعد يتصل به يرث الحماية
-            مجانًا.
+            هذه الإضافة حفظت الألغام كلها مرة واحدة — فيسأل مساعدُك القاعدة الرسمية بالطريقة
+            الصحيحة، دائمًا.
           </p>
         </div>
         <div class="border-2 border-ink min-w-0">
-          <div class="p-5 bg-card border-b-2 border-ink" dir="ltr">
-            <p class="text-xs font-semibold text-crisis mb-3 font-mono">RAW REST</p>
-            <pre
-              class="text-[13px] font-mono text-soft overflow-x-auto leading-6"
-            >GET /population/?coa=EGY
-{ "items": <span class="text-crisis font-bold">[]</span> }          // silent — wrong code</pre>
+          <div class="p-5 bg-card border-b-2 border-ink">
+            <p class="text-xs font-semibold text-crisis mb-3">بدون الإضافة</p>
+            <p class="text-sm">
+              <span class="text-teal font-bold">أنت ‹</span> كم عدد اللاجئين المسجلين في مصر؟
+            </p>
+            <p class="mt-2 text-sm text-soft">
+              المساعد › «تستضيف مصر مئات الآلاف من اللاجئين — ربما نحو ٣٠٠ ألف وفق آخر بياناتي
+              (2023)، وقد تكون الأرقام تغيّرت…»
+            </p>
+            <p class="mt-3 text-xs text-crisis font-semibold">
+              تخمين من الذاكرة: تقريبي، قديم، بلا مصدر.
+            </p>
           </div>
-          <div class="p-5 bg-ink text-paper" dir="ltr">
-            <p class="text-xs font-semibold text-amber mb-3 font-mono">HUMANITARIAN-MCP</p>
-            <pre
-              class="text-[13px] font-mono text-fog overflow-x-auto leading-6"
-            >refugee_population({ country: "Egypt" })
-{ country: "Egypt", country_code: <span class="text-paper font-semibold">"EGY"</span>,
-  year: 2025, refugees: <span class="text-amber font-bold">220,033</span>, … }</pre>
+          <div class="p-5 bg-ink text-paper">
+            <p class="text-xs font-semibold text-amber mb-3">
+              مع <span class="font-mono" dir="ltr">humanitarian-mcp</span>
+            </p>
+            <p class="text-sm">
+              <span class="text-teal font-bold">أنت ‹</span> السؤال نفسه.
+            </p>
+            <p class="mt-2 text-sm text-fog">
+              المساعد › «<strong class="text-amber" dir="ltr">220,033</strong> لاجئًا مسجلًا في مصر
+              نهاية 2025 — المصدر: مفوضية اللاجئين، Refugee Data Finder.»
+            </p>
+            <p class="mt-3 text-xs text-amber font-semibold">
+              استعلام حي: رقم دقيق، بسنته، بمصدره.
+            </p>
           </div>
         </div>
       </div>
@@ -432,8 +459,8 @@
         <p class="font-mono text-teal text-sm mb-2" dir="ltr">02</p>
         <h2 class="font-head font-bold text-3xl leading-snug">شاهِده يُجيب.</h2>
         <p class="mt-5 text-soft">
-          أنت تسأل بالعربي، المساعد يختار الأداة، والخادم يتكفل بالباقي — والأرقام أدناه حية من
-          UNHCR.
+          أنت تكتب السؤال بالعربي فقط — لا أوامر ولا رموز. السطر الرمادي في المنتصف هو ما يفعله
+          المساعد خلف الكواليس تلقائيًا، والأرقام حية من قاعدة المفوضية.
         </p>
       </div>
       <div class="border-2 border-ink bg-card min-w-0">
@@ -474,7 +501,8 @@
         <p class="font-mono text-teal text-sm mb-2" dir="ltr">03</p>
         <h2 class="font-head font-bold text-3xl sm:text-4xl">مَن يستفيد؟ وكيف؟</h2>
         <p class="mt-4 text-soft max-w-2xl">
-          كل من يحتاج رقمًا موثوقًا عن اللجوء والنزوح ولا يملك وقتًا (أو رغبة) لمصارعة واجهات REST:
+          كل من يحتاج رقمًا موثوقًا عن اللجوء والنزوح — دون أن يتعلم أدوات تقنية أو يقضي يومه بين
+          جداول البيانات:
         </p>
 
         <div class="mt-10 grid md:grid-cols-2 gap-px bg-rule border border-rule">
@@ -539,18 +567,35 @@
         <p class="font-mono text-teal text-sm mb-2" dir="ltr">04</p>
         <h2 class="font-head font-bold text-3xl sm:text-4xl">جاهز في دقيقتين.</h2>
         <p class="mt-4 text-soft max-w-2xl">
-          كل ما تحتاجه مثبّتًا مسبقًا:
-          <a
-            class="text-teal border-b border-teal hover:text-ink hover:border-ink"
-            href="https://nodejs.org"
-            dir="ltr"
-            >Node.js 20+</a
-          >
-          و <span class="font-mono text-ink" dir="ltr">Git</span>. الخادم يعمل محليًا على جهازك،
-          قراءة فقط — لا تغادر أسئلتك ولا بياناتك الجهاز.
+          لا يحتاج الأمر مبرمجًا — تثبيت يُنجز مرة واحدة في ثلاث خطوات، وكل شيء يعمل على جهازك
+          أنت: لا تغادر أسئلتك ولا بياناتك الجهاز.
         </p>
 
-        <div class="mt-7 flex items-stretch border-2 border-ink bg-card max-w-3xl" dir="ltr">
+        <ol class="mt-7 space-y-3 text-sm max-w-2xl">
+          <li>
+            <strong class="font-head text-teal">١ ·</strong> ثبّت
+            <a
+              class="text-teal border-b border-teal hover:text-ink hover:border-ink"
+              href="https://nodejs.org"
+              dir="ltr"
+              >Node.js</a
+            >
+            و
+            <a
+              class="text-teal border-b border-teal hover:text-ink hover:border-ink"
+              href="https://git-scm.com"
+              dir="ltr"
+              >Git</a
+            >
+            إن لم يكونا على جهازك — برنامجان مجانيان بتثبيت عادي بالنقر.
+          </li>
+          <li>
+            <strong class="font-head text-teal">٢ ·</strong> افتح تطبيق «الطرفية» (Terminal —
+            موجود في كل ماك وويندوز ولينكس)، والصق هذا السطر واضغط Enter:
+          </li>
+        </ol>
+
+        <div class="mt-4 flex items-stretch border-2 border-ink bg-card max-w-3xl" dir="ltr">
           <code
             id="install"
             class="flex-1 px-4 py-3 text-sm font-mono text-ink overflow-x-auto whitespace-nowrap"
@@ -566,7 +611,12 @@
           </button>
         </div>
 
-        <div class="mt-10 flex flex-wrap gap-2 text-sm font-semibold">
+        <p class="mt-8 text-sm max-w-2xl">
+          <strong class="font-head text-teal">٣ ·</strong> اختر برنامجك من التبويبات، أضف مقطع
+          الإعداد، وأعد تشغيله — ثم اسأل بلغتك.
+        </p>
+
+        <div class="mt-4 flex flex-wrap gap-2 text-sm font-semibold">
           <button
             @click="tab='desktop'"
             :class="tab==='desktop' ? 'bg-ink text-paper' : 'bg-card text-soft hover:text-ink'"
@@ -703,7 +753,8 @@ npm run dashboard
         <h2 class="font-head font-bold text-3xl sm:text-4xl">ثلاث ورشات — واحدة لكل مهنة</h2>
         <p class="mt-4 text-fog max-w-2xl">
           مسارات كاملة من السؤال إلى ناتج تسلّمه: للباحث، للصحفي، وللمنظمة — بأرقام حقيقية، لا
-          أمثلة وهمية.
+          أمثلة وهمية. وتذكّر: الأسطر الداكنة أدناه يكتبها المساعد بنفسه خلف الكواليس؛
+          <span class="text-paper">أنت تكتب السؤال العربي فقط.</span>
         </p>
 
         <div class="mt-12 space-y-14">
@@ -823,19 +874,19 @@ demographics({ country: "Egypt" })
         هل نحن الأوائل؟ بصراحة: لا — <span class="text-teal">وهذه ميزتنا.</span>
       </h2>
       <p class="mt-5 text-soft max-w-3xl">
-        توجد أغلفة MCP سابقة لبيانات UNHCR (أبرزها
+        توجد أدوات سابقة تصل المساعدات الذكية ببيانات اللجوء (أبرزها
         <a
           class="text-teal border-b border-teal hover:text-ink hover:border-ink"
           href="https://github.com/rvibek/mcp_unhcr"
           dir="ltr"
           >rvibek/mcp_unhcr</a
-        >) وخادم قوي لمنصة HDX (<a
+        >) وأداة قوية لمنصة HDX (<a
           class="text-teal border-b border-teal hover:text-ink hover:border-ink"
           href="https://github.com/dividor/hdx-mcp"
           dir="ltr"
           >dividor/hdx-mcp</a
-        >). لكنها تمرّر لك واجهة الـ API كما هي — أنت من يعرف الأكواد ويحسب النسب ويرسم. هذا المشروع
-        بُني ليكون <strong class="text-ink">طبقة الفهم</strong>، لا مجرد ناقل:
+        >). لكنها تمرّر البيانات الخام كما هي — على مستخدمها أن يعرف الرموز ويحسب النسب ويرسم
+        بنفسه. هذا المشروع بُني ليكون <strong class="text-ink">طبقة الفهم</strong>، لا مجرد ناقل:
       </p>
 
       <div class="mt-8 overflow-x-auto">
@@ -843,7 +894,7 @@ demographics({ country: "Egypt" })
           <thead>
             <tr class="bg-ink text-paper">
               <th class="p-3 text-right font-semibold"></th>
-              <th class="p-3 text-right font-semibold">أغلفة UNHCR السابقة</th>
+              <th class="p-3 text-right font-semibold">أدوات UNHCR السابقة</th>
               <th class="p-3 text-right font-semibold" dir="ltr">hdx-mcp</th>
               <th class="p-3 text-right font-bold text-amber">humanitarian-mcp</th>
             </tr>
@@ -908,14 +959,15 @@ demographics({ country: "Egypt" })
           اليوم UNHCR. غدًا <span class="text-teal">طبقة واحدة</span> للبيانات الإنسانية.
         </h2>
         <p class="mt-4 text-soft max-w-3xl">
-          بنية المزوّدين إضافية: كل مصدر جديد مجلدٌ واحد يطبّق واجهةً واحدة —
+          صُممت الإضافة لتقبل مصادر بيانات جديدة كوحدات مستقلة — للمطورين:
           <a
             class="text-teal border-b border-teal hover:text-ink hover:border-ink"
             href="https://github.com/ahmedvnabil/humanitarian-mcp/blob/main/docs/adding-providers.md"
             dir="ltr"
-            >والدليل خطوة بخطوة ↗</a
-          >. وحزمة <code class="font-mono text-ink" dir="ltr">npx humanitarian-mcp</code> قادمة:
-          تشغيل بلا استنساخ.
+            >دليل إضافة مصدر خطوة بخطوة ↗</a
+          >. وقريبًا تثبيت أبسط بأمر واحد (<code class="font-mono text-ink" dir="ltr"
+            >npx humanitarian-mcp</code
+          >).
         </p>
 
         <div class="mt-7 flex flex-wrap gap-2 text-sm">
@@ -986,6 +1038,31 @@ demographics({ country: "Egypt" })
         <h2 class="font-head font-bold text-3xl sm:text-4xl">أسئلة تسبق التجربة</h2>
 
         <div class="mt-8 max-w-3xl border-t border-rule">
+          <details class="group border-b border-rule">
+            <summary
+              class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
+            >
+              ما «المساعد الذكي» المقصود هنا؟
+              <span
+                class="font-mono text-teal text-xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p class="pb-5 text-sm text-soft leading-relaxed">
+              برامج المحادثة بالذكاء الاصطناعي: تكتب لها سؤالًا فتجيبك. أشهر ما تعمل معه هذه
+              الإضافة تطبيق
+              <a
+                class="text-teal border-b border-teal hover:text-ink hover:border-ink"
+                href="https://claude.ai/download"
+                dir="ltr"
+                >Claude Desktop</a
+              >
+              المجاني للكمبيوتر — وتعمل مع أي برنامج يدعم معيار MCP المفتوح، وقائمة الداعمين تتوسع
+              باستمرار.
+            </p>
+          </details>
+
           <details class="group border-b border-rule">
             <summary
               class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
