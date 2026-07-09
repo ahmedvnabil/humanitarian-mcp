@@ -59,10 +59,10 @@ This aims to be that, for humanitarian data.
 UNHCR is live today. ReliefWeb and HDX are next — a provider is one directory
 implementing one interface, and there's a step-by-step guide.
 
-**7/** MIT licensed. Runs locally with Claude Desktop, Claude Code, Cursor —
-anything that speaks MCP.
+**7/** MIT licensed. Try it in 10 seconds — a hosted endpoint is live, or run
+it locally with Claude Desktop, Claude Code, Cursor — anything that speaks MCP.
 
-github.com/ahmedvnabil/humanitarian-mcp
+humanitarian-mcp.zad.tools
 
 If you work in humanitarian data or build MCP servers, I'd genuinely value
 your eyes on it.
@@ -134,6 +134,7 @@ normalization semantics from anyone who works with UNHCR data professionally,
 and feedback on the MCP surface design from folks building servers.
 
 Repo: https://github.com/ahmedvnabil/humanitarian-mcp
+Hosted endpoint + landing page (Arabic): https://humanitarian-mcp.zad.tools
 
 ---
 
