@@ -4,6 +4,11 @@ Reproducible workflows from research question to citable dataset. Everything
 below uses real UNHCR figures served by this MCP — ask the questions in plain
 language (Arabic or English) inside any connected assistant.
 
+Prefer code to chat? The same workflows run end-to-end in
+[Python and R notebooks](../examples/notebooks/) against a local server.
+Add `include_codebook: true` to any `export_data` call for a variable-level
+codebook ready for your data appendix.
+
 ## Why this beats hand-collecting from the Refugee Data Finder
 
 - **Clean identifiers**: every row carries ISO3 codes — joins against World
@@ -122,7 +127,7 @@ Cite the data as UNHCR, Refugee Data Finder (year of extraction), and the
 tooling via GitHub's **"Cite this repository"** button (backed by
 [CITATION.cff](../CITATION.cff)), or as:
 
-> humanitarian-mcp (v0.2.0), open-source MCP server,
+> humanitarian-mcp (v0.5.0), open-source MCP server,
 > https://github.com/ahmedvnabil/humanitarian-mcp
 
 Every `export_data` call attaches an extraction manifest (exact arguments,

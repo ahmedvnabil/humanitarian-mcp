@@ -232,7 +232,8 @@ first:
 - [x] HDX/HAPI provider: internal displacement (IOM DTM), conflict events
       (ACLED), humanitarian funding (FTS), food security (IPC) — **v0.4.0**
 - [x] Docker image + compose for organisational self-hosting
-- [ ] Automatic codebooks, runnable Python/R notebooks, JOSS paper — **v0.5.0 → v1.0**
+- [x] Automatic codebooks + runnable [Python/R notebooks](examples/notebooks/) — **v0.5.0**
+- [ ] JOSS paper (draft ready in [paper/](paper/)) — submission, then **v1.0**
 
 Deferred, contributions welcome: ReliefWeb provider (situation reports,
 disasters, jobs — scaffold in `src/providers/reliefweb/`), full Arabic report

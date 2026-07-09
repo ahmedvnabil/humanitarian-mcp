@@ -130,8 +130,8 @@ asylum decisions, demographics, method notes. Emits 5 MCP progress notifications
 
 `dataset` (`population`|`demographics`|`asylum-applications`|`asylum-decisions`|`context-indicators`|`idps`|`conflict-events`|`humanitarian-funding`|`food-security`) ·
 `format` (`csv`|`json`|`markdown`|`geojson`) · `country?` · `role` · `group_by` ·
-`year_from` · `year_to` · `limit` (≤5000, default 500) · `include_manifest` (default true)
-→ `{ dataset, format, row_count, truncated, data, manifest? }`
+`year_from` · `year_to` · `limit` (≤5000, default 500) · `include_manifest` (default true) · `include_codebook` (default false)
+→ `{ dataset, format, row_count, truncated, data, manifest?, codebook? }`
 `group_by` breaks rows down per asylum/origin country (needed for meaningful geojson).
 The manifest records the exact arguments, extraction timestamp, server version
 and citation — a repeatable extraction recipe for a paper's appendix. In CSV it
