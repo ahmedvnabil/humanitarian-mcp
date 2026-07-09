@@ -12,6 +12,7 @@ import {
 import { objectsToCsv } from '../viz/csv.js';
 import { toGeoJson } from '../viz/geojson.js';
 import { markdownTable } from '../viz/table.js';
+import { buildCodebook, codebookMarkdown } from './codebook.js';
 import {
   datasetProvenance,
   defaultYearRange,
@@ -83,6 +84,12 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
           .describe(
             'Attach an extraction manifest (exact arguments, timestamp, server version, citation) for reproducibility. Default true.',
           ),
+        include_codebook: z
+          .boolean()
+          .optional()
+          .describe(
+            "Attach a codebook documenting every exported variable (meaning, unit, derivation) — ready for a paper's data appendix. Default false.",
+          ),
       },
       outputSchema: {
         dataset: z.string(),
@@ -92,6 +99,9 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
         /** The serialized payload: a string for csv/markdown, an object for json/geojson. */
         data: z.union([z.string(), z.record(z.unknown())]),
         manifest: z.record(z.unknown()).optional(),
+        codebook: z
+          .array(z.object({ field: z.string(), description: z.string(), unit: z.string() }))
+          .optional(),
       },
     },
     async ({
@@ -104,6 +114,7 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
       year_to,
       limit,
       include_manifest,
+      include_codebook,
     }) => {
       const { yearFrom, yearTo } = defaultYearRange(year_from, year_to);
       const query: {
@@ -188,6 +199,13 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
         }
       }
 
+      let codebook: ReturnType<typeof buildCodebook> | undefined;
+      if (include_codebook) {
+        const presentFields = [...new Set(rows.map(flatten).flatMap((row) => Object.keys(row)))];
+        codebook = buildCodebook(dataset as DatasetId, presentFields);
+        text += `\n\n## Codebook\n\n${codebookMarkdown(codebook)}`;
+      }
+
       if (wasTruncated) {
         text += `\n\n_Note: output truncated to ${rows.length} rows. Narrow the year range or filter by country for a complete set._`;
       }
@@ -201,6 +219,7 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
           truncated: wasTruncated,
           data,
           ...(manifest ? { manifest } : {}),
+          ...(codebook ? { codebook } : {}),
         },
       };
     },

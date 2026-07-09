@@ -235,6 +235,28 @@ describe('tool surface', () => {
     expect(bare.manifest).toBeUndefined();
   });
 
+  it('export_data attaches a codebook matching the exported columns on demand', async () => {
+    const result = (await call('export_data', {
+      dataset: 'population',
+      format: 'csv',
+      country: 'Jordan',
+      year_from: 2023,
+      year_to: 2023,
+      include_codebook: true,
+    })) as { codebook: { field: string; description: string; unit: string }[] };
+
+    const fields = result.codebook.map((entry) => entry.field);
+    expect(fields).toContain('refugees');
+    expect(fields).toContain('country_code');
+    expect(fields).toContain('population');
+    // Documents only exported columns — no IPC fields in a population export.
+    expect(fields).not.toContain('ipc_phase_3plus');
+    for (const entry of result.codebook) {
+      expect(entry.description.length).toBeGreaterThan(0);
+      expect(entry.unit.length).toBeGreaterThan(0);
+    }
+  });
+
   it('crisis tools: conflict, food security and funding read HDX-shaped datasets', async () => {
     const conflict = (await call('conflict_events', {
       country: 'Sudan',
