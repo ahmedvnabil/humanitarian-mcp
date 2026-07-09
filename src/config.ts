@@ -23,6 +23,8 @@ export interface Config {
   readonly analytics: boolean;
   /** Port for --http mode. */
   readonly httpPort: number;
+  /** Interface to bind in --http mode. Default localhost; set 0.0.0.0 to expose directly. */
+  readonly httpHost: string;
   /** User-Agent sent with every outgoing request. */
   readonly userAgent: string;
 }
@@ -81,6 +83,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     logLevel,
     analytics: boolFromEnv(env, 'HMCP_ANALYTICS', true),
     httpPort: intFromEnv(env, 'HMCP_HTTP_PORT', 8642),
+    httpHost: env['HMCP_HTTP_HOST']?.trim() || '127.0.0.1',
     userAgent:
       env['HMCP_USER_AGENT'] ??
       `${SERVER_NAME}/${SERVER_VERSION} (+https://github.com/ahmedvnabil/humanitarian-mcp)`,

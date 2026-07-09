@@ -125,15 +125,16 @@ chart://{code}            Chart.js config, 10-year trend (chart://UGA)
 
 All optional — see [.env.example](.env.example) for the full list.
 
-| Variable              | Default  | Purpose                                      |
-| --------------------- | -------- | -------------------------------------------- |
-| `HMCP_PROVIDERS`      | `unhcr`  | Enabled providers, comma-separated           |
-| `HMCP_CACHE`          | `memory` | `memory` or `sqlite`                         |
-| `HMCP_CACHE_TTL`      | `3600`   | Seconds an entry is fresh                    |
-| `HMCP_OFFLINE`        | `0`      | `1` = serve cache only, never fetch          |
-| `HMCP_RATE_LIMIT_RPS` | `4`      | Outgoing requests/second per provider        |
-| `HMCP_LOG_LEVEL`      | `info`   | `debug` / `info` / `warn` / `error` (stderr) |
-| `HMCP_HTTP_PORT`      | `8642`   | Port for `--http` mode                       |
+| Variable              | Default     | Purpose                                                |
+| --------------------- | ----------- | ------------------------------------------------------ |
+| `HMCP_PROVIDERS`      | `unhcr`     | Enabled providers, comma-separated                     |
+| `HMCP_CACHE`          | `memory`    | `memory` or `sqlite`                                   |
+| `HMCP_CACHE_TTL`      | `3600`      | Seconds an entry is fresh                              |
+| `HMCP_OFFLINE`        | `0`         | `1` = serve cache only, never fetch                    |
+| `HMCP_RATE_LIMIT_RPS` | `4`         | Outgoing requests/second per provider                  |
+| `HMCP_LOG_LEVEL`      | `info`      | `debug` / `info` / `warn` / `error` (stderr)           |
+| `HMCP_HTTP_PORT`      | `8642`      | Port for `--http` mode                                 |
+| `HMCP_HTTP_HOST`      | `127.0.0.1` | Bind interface for `--http` mode (`0.0.0.0` to expose) |
 
 ## Architecture in one screen
 

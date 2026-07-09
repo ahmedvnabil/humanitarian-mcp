@@ -181,8 +181,10 @@ export async function startHttpServer(ctx: AppContext, port: number): Promise<vo
     }
   }
 
-  await new Promise<void>((resolve) => httpServer.listen(port, resolve));
+  const host = ctx.config.httpHost;
+  await new Promise<void>((resolve) => httpServer.listen(port, host, resolve));
   ctx.logger.info(`${SERVER_NAME} ${SERVER_VERSION} http mode`, {
+    host,
     dashboard: `http://localhost:${port}/`,
     mcpEndpoint: `http://localhost:${port}/mcp`,
   });
