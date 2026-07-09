@@ -235,6 +235,33 @@ describe('tool surface', () => {
     expect(bare.manifest).toBeUndefined();
   });
 
+  it('crisis tools: conflict, food security and funding read HDX-shaped datasets', async () => {
+    const conflict = (await call('conflict_events', {
+      country: 'Sudan',
+      year_from: 2023,
+      year_to: 2024,
+    })) as { records: { year: number; events: number; fatalities: number }[] };
+    expect(conflict.records).toHaveLength(2);
+    expect(conflict.records[0]!.fatalities).toBe(conflict.records[0]!.events * 2);
+
+    const food = (await call('food_security', { country: 'Sudan' })) as {
+      year: number;
+      people_crisis_or_worse: number;
+      phases: Record<string, number>;
+    };
+    expect(food.year).toBe(2024);
+    expect(food.people_crisis_or_worse).toBe(700_000);
+    expect(food.phases['ipc_phase_5']).toBe(20_000);
+
+    const funding = (await call('humanitarian_funding', {
+      country: 'Sudan',
+      year_from: 2023,
+      year_to: 2024,
+    })) as { records: { year: number; coverage_pct?: number }[] };
+    expect(funding.records.length).toBeGreaterThan(0);
+    expect(funding.records[0]!.coverage_pct).toBeGreaterThan(0);
+  });
+
   it('generate_chart plots normalized values with the unit on the axis', async () => {
     const chart = (await call('generate_chart', {
       countries: ['Jordan'],
@@ -310,7 +337,7 @@ describe('tool surface', () => {
       providers: { id: string; datasets: unknown[] }[];
     };
     expect(metadata.providers[0]!.id).toBe('mock');
-    expect(metadata.providers[0]!.datasets).toHaveLength(5);
+    expect(metadata.providers[0]!.datasets).toHaveLength(8);
 
     const health = (await call('provider_health')) as {
       healthy: boolean;

@@ -144,6 +144,69 @@ export class MockProvider implements HumanitarianProvider {
           });
         }
       }
+    } else if (query.dataset === 'conflict-events') {
+      const iso3 = (query.asylum_iso3 ?? query.origin_iso3 ?? 'SDN').toUpperCase();
+      const country = COUNTRIES.find((c) => c.iso3 === iso3);
+      if (country) {
+        for (let year = yearFrom; year <= yearTo; year++) {
+          const events = 100 + (year - 2015) * 10;
+          records.push({
+            country: country.name,
+            country_code: country.iso3,
+            year,
+            population: events,
+            metrics: { events, fatalities: events * 2 },
+            source: 'mock',
+            last_updated: '2026-01-01T00:00:00.000Z',
+            dataset: 'conflict-events',
+          });
+        }
+      }
+    } else if (query.dataset === 'humanitarian-funding') {
+      const iso3 = (query.asylum_iso3 ?? query.origin_iso3 ?? 'SDN').toUpperCase();
+      const country = COUNTRIES.find((c) => c.iso3 === iso3);
+      if (country) {
+        for (let year = Math.max(yearFrom, 2020); year <= yearTo; year++) {
+          const funding = 250_000_000 + (year - 2020) * 10_000_000;
+          records.push({
+            country: country.name,
+            country_code: country.iso3,
+            year,
+            population: funding,
+            metrics: {
+              requirements_usd: 500_000_000,
+              funding_usd: funding,
+              funding_coverage_pct: Number(((funding / 500_000_000) * 100).toFixed(1)),
+            },
+            source: 'mock',
+            last_updated: '2026-01-01T00:00:00.000Z',
+            dataset: 'humanitarian-funding',
+          });
+        }
+      }
+    } else if (query.dataset === 'food-security') {
+      const iso3 = (query.asylum_iso3 ?? query.origin_iso3 ?? 'SDN').toUpperCase();
+      const country = COUNTRIES.find((c) => c.iso3 === iso3);
+      if (country && yearFrom <= 2024 && yearTo >= 2024) {
+        records.push({
+          country: country.name,
+          country_code: country.iso3,
+          year: 2024,
+          population: 700_000,
+          metrics: {
+            ipc_phase_1: 1_000_000,
+            ipc_phase_2: 800_000,
+            ipc_phase_3: 500_000,
+            ipc_phase_4: 180_000,
+            ipc_phase_5: 20_000,
+            ipc_phase_3plus: 700_000,
+            analyzed_population: 2_500_000,
+          },
+          source: 'mock',
+          last_updated: '2026-01-01T00:00:00.000Z',
+          dataset: 'food-security',
+        });
+      }
     } else if (query.dataset === 'demographics') {
       const iso3 = (query.asylum_iso3 ?? query.origin_iso3 ?? 'EGY').toUpperCase();
       const country = COUNTRIES.find((c) => c.iso3 === iso3);
@@ -228,6 +291,9 @@ export class MockProvider implements HumanitarianProvider {
           'asylum-applications',
           'asylum-decisions',
           'context-indicators',
+          'conflict-events',
+          'humanitarian-funding',
+          'food-security',
         ] as DatasetId[]
       ).map((id) => ({
         id,
