@@ -8,13 +8,15 @@
  */
 
 /** Datasets known to the platform. Providers declare which ones they serve. */
-export type DatasetId = 'population' | 'demographics' | 'asylum-applications' | 'asylum-decisions';
+export type DatasetId =
+  'population' | 'demographics' | 'asylum-applications' | 'asylum-decisions' | 'context-indicators';
 
 export const ALL_DATASETS: readonly DatasetId[] = [
   'population',
   'demographics',
   'asylum-applications',
   'asylum-decisions',
+  'context-indicators',
 ];
 
 /**

@@ -9,10 +9,11 @@ describe('createContext', () => {
   const dir = mkdtempSync(join(tmpdir(), 'hmcp-ctx-'));
   afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
-  it('wires the unhcr provider with a memory cache by default', async () => {
+  it('wires unhcr + worldbank with a memory cache by default', async () => {
     const ctx = await createContext(loadConfig({ HMCP_LOG_LEVEL: 'error' }));
-    expect(ctx.registry.ids()).toEqual(['unhcr']);
+    expect(ctx.registry.ids()).toEqual(['unhcr', 'worldbank']);
     expect(ctx.cache.backend).toBe('memory');
+    // UNHCR stays primary: registration order follows HMCP_PROVIDERS order.
     expect(ctx.registry.primary().id).toBe('unhcr');
   });
 

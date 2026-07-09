@@ -7,6 +7,7 @@ import { hdxNotImplemented } from './providers/hdx/index.js';
 import { ProviderRegistry } from './providers/registry.js';
 import { reliefwebNotImplemented } from './providers/reliefweb/index.js';
 import { UnhcrProvider } from './providers/unhcr/index.js';
+import { WorldBankProvider } from './providers/worldbank/index.js';
 import { Analytics } from './shared/analytics.js';
 
 /** Everything the server needs, built once at startup and injected everywhere. */
@@ -28,6 +29,9 @@ export async function createContext(config: Config = loadConfig()): Promise<AppC
       case 'unhcr':
         registry.register(new UnhcrProvider(config, cache, logger));
         break;
+      case 'worldbank':
+        registry.register(new WorldBankProvider(config, cache, logger));
+        break;
       case 'reliefweb':
         reliefwebNotImplemented();
         break;
@@ -36,7 +40,7 @@ export async function createContext(config: Config = loadConfig()): Promise<AppC
         break;
       default:
         throw new Error(
-          `Unknown provider "${id}" in HMCP_PROVIDERS (known: unhcr, reliefweb, hdx)`,
+          `Unknown provider "${id}" in HMCP_PROVIDERS (known: unhcr, worldbank, reliefweb, hdx)`,
         );
     }
   }

@@ -52,7 +52,7 @@ function boolFromEnv(env: NodeJS.ProcessEnv, key: string, fallback: boolean): bo
 
 /** Build a {@link Config} from an environment (defaults to `process.env`). */
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
-  const providersRaw = env['HMCP_PROVIDERS'] ?? 'unhcr';
+  const providersRaw = env['HMCP_PROVIDERS'] ?? 'unhcr,worldbank';
   const providers = providersRaw
     .split(',')
     .map((p) => p.trim().toLowerCase())
