@@ -180,6 +180,61 @@ describe('tool surface', () => {
     expect(geojson.data.type).toBe('FeatureCollection');
   });
 
+  it('export_data attaches a reproducible extraction manifest by default', async () => {
+    const json = (await call('export_data', {
+      dataset: 'population',
+      format: 'json',
+      country: 'Jordan',
+      year_from: 2022,
+      year_to: 2023,
+    })) as {
+      manifest: {
+        tool: string;
+        arguments: Record<string, unknown>;
+        extracted_at: string;
+        server: string;
+        source: string;
+        citation: string;
+      };
+      data: { manifest?: unknown };
+    };
+    expect(json.manifest.tool).toBe('export_data');
+    expect(json.manifest.arguments).toMatchObject({
+      dataset: 'population',
+      format: 'json',
+      country: 'Jordan',
+      year_from: 2022,
+      year_to: 2023,
+    });
+    expect(json.manifest.extracted_at).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+    expect(json.manifest.server).toMatch(/^humanitarian-mcp\//);
+    expect(json.manifest.source).toBe('mock');
+    expect(json.data.manifest).toBeDefined();
+
+    // CSV carries the manifest as # comment lines pandas/R can skip.
+    const csv = (await call('export_data', {
+      dataset: 'population',
+      format: 'csv',
+      country: 'Jordan',
+      year_from: 2023,
+      year_to: 2023,
+    })) as { data: string };
+    expect(csv.data).toMatch(/^# humanitarian-mcp extraction manifest/);
+    expect(csv.data).toContain('# citation:');
+
+    // Opt-out keeps payloads clean.
+    const bare = (await call('export_data', {
+      dataset: 'population',
+      format: 'csv',
+      country: 'Jordan',
+      year_from: 2023,
+      year_to: 2023,
+      include_manifest: false,
+    })) as { data: string; manifest?: unknown };
+    expect(bare.data).not.toContain('#');
+    expect(bare.manifest).toBeUndefined();
+  });
+
   it('get_metadata and provider_health describe the mock provider', async () => {
     const metadata = (await call('get_metadata')) as {
       providers: { id: string; datasets: unknown[] }[];

@@ -1,5 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
+import { SERVER_NAME, SERVER_VERSION } from '../config.js';
 import type { AppContext } from '../context.js';
 import type { DatasetId, NormalizedRecord } from '../providers/types.js';
 import {
@@ -12,6 +13,7 @@ import { objectsToCsv } from '../viz/csv.js';
 import { toGeoJson } from '../viz/geojson.js';
 import { markdownTable } from '../viz/table.js';
 import {
+  datasetProvenance,
   defaultYearRange,
   defineTool,
   fetchAllRows,
@@ -23,6 +25,34 @@ import {
 function flatten(record: NormalizedRecord): Record<string, unknown> {
   const { metrics, ...rest } = record;
   return { ...rest, ...metrics };
+}
+
+/**
+ * Provenance every export carries: the exact tool call (a repeatable
+ * extraction recipe for a paper's appendix), when it ran, which server
+ * version served it and how to cite the source.
+ */
+export interface ExtractionManifest {
+  tool: string;
+  arguments: Record<string, unknown>;
+  extracted_at: string;
+  server: string;
+  source: string;
+  citation: string;
+}
+
+/** Manifest as CSV comment lines (readable via `comment='#'` in pandas / R). */
+function manifestAsCsvHeader(manifest: ExtractionManifest): string {
+  const lines = [
+    '# humanitarian-mcp extraction manifest — re-run this exact call to reproduce',
+    `# tool: ${manifest.tool}`,
+    `# arguments: ${JSON.stringify(manifest.arguments)}`,
+    `# extracted_at: ${manifest.extracted_at}`,
+    `# server: ${manifest.server}`,
+    `# source: ${manifest.source}`,
+    `# citation: ${manifest.citation}`,
+  ];
+  return lines.join('\n') + '\n';
 }
 
 export function registerExportTools(server: McpServer, ctx: AppContext): void {
@@ -47,6 +77,12 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
         year_from: yearFromInput,
         year_to: yearToInput,
         limit: z.number().int().min(1).max(5000).optional().describe('Max rows (default 500)'),
+        include_manifest: z
+          .boolean()
+          .optional()
+          .describe(
+            'Attach an extraction manifest (exact arguments, timestamp, server version, citation) for reproducibility. Default true.',
+          ),
       },
       outputSchema: {
         dataset: z.string(),
@@ -55,9 +91,20 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
         truncated: z.boolean(),
         /** The serialized payload: a string for csv/markdown, an object for json/geojson. */
         data: z.union([z.string(), z.record(z.unknown())]),
+        manifest: z.record(z.unknown()).optional(),
       },
     },
-    async ({ dataset, format, country, role, group_by, year_from, year_to, limit }) => {
+    async ({
+      dataset,
+      format,
+      country,
+      role,
+      group_by,
+      year_from,
+      year_to,
+      limit,
+      include_manifest,
+    }) => {
       const { yearFrom, yearTo } = defaultYearRange(year_from, year_to);
       const query: {
         dataset: DatasetId;
@@ -79,16 +126,43 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
       const rows = records.slice(0, maxRows);
       const wasTruncated = truncated || records.length > maxRows;
 
+      let manifest: ExtractionManifest | undefined;
+      if (include_manifest ?? true) {
+        const provenance = await datasetProvenance(ctx, dataset as DatasetId);
+        manifest = {
+          tool: 'export_data',
+          arguments: {
+            dataset,
+            format,
+            ...(country ? { country } : {}),
+            ...(role ? { role } : {}),
+            ...(group_by ? { group_by } : {}),
+            year_from: yearFrom,
+            year_to: yearTo,
+            limit: maxRows,
+          },
+          extracted_at: new Date().toISOString(),
+          server: `${SERVER_NAME}/${SERVER_VERSION}`,
+          source: provenance.source,
+          citation: provenance.citation,
+        };
+      }
+
       let data: string | Record<string, unknown>;
       let text: string;
       switch (format) {
         case 'csv': {
-          data = objectsToCsv(rows.map(flatten));
-          text = `CSV export — ${dataset}, ${rows.length} rows:\n\n\`\`\`csv\n${data}\`\`\``;
+          const csv = objectsToCsv(rows.map(flatten));
+          data = manifest ? manifestAsCsvHeader(manifest) + csv : csv;
+          text = `CSV export — ${dataset}, ${rows.length} rows${manifest ? ' (manifest in `#` comment lines — read with `comment="#"`)' : ''}:\n\n\`\`\`csv\n${data}\`\`\``;
           break;
         }
         case 'json': {
-          data = { dataset, rows: rows as unknown as Record<string, unknown>[] };
+          data = {
+            dataset,
+            rows: rows as unknown as Record<string, unknown>[],
+            ...(manifest ? { manifest } : {}),
+          };
           text = `JSON export — ${dataset}, ${rows.length} rows:\n\n\`\`\`json\n${JSON.stringify(data, null, 2)}\n\`\`\``;
           break;
         }
@@ -100,12 +174,16 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
             flat.map((row) => headers.map((h) => row[h] as string | number | null)),
           );
           text = data;
+          if (manifest) {
+            text += `\n\n> Extraction manifest: \`${JSON.stringify(manifest)}\``;
+          }
           break;
         }
         case 'geojson': {
           const { featureCollection, skipped } = toGeoJson(rows);
-          data = featureCollection;
-          text = `GeoJSON export — ${dataset}, ${(featureCollection['features'] as unknown[]).length} features${skipped.length > 0 ? ` (no centroid: ${skipped.slice(0, 10).join(', ')}${skipped.length > 10 ? '…' : ''})` : ''}:\n\n\`\`\`json\n${JSON.stringify(featureCollection)}\n\`\`\``;
+          // `manifest` rides along as a GeoJSON foreign member (RFC 7946 §6.1).
+          data = manifest ? { ...featureCollection, manifest } : featureCollection;
+          text = `GeoJSON export — ${dataset}, ${(featureCollection['features'] as unknown[]).length} features${skipped.length > 0 ? ` (no centroid: ${skipped.slice(0, 10).join(', ')}${skipped.length > 10 ? '…' : ''})` : ''}:\n\n\`\`\`json\n${JSON.stringify(data)}\n\`\`\``;
           break;
         }
       }
@@ -122,6 +200,7 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
           row_count: rows.length,
           truncated: wasTruncated,
           data,
+          ...(manifest ? { manifest } : {}),
         },
       };
     },
