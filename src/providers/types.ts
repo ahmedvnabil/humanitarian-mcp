@@ -9,7 +9,15 @@
 
 /** Datasets known to the platform. Providers declare which ones they serve. */
 export type DatasetId =
-  'population' | 'demographics' | 'asylum-applications' | 'asylum-decisions' | 'context-indicators';
+  | 'population'
+  | 'demographics'
+  | 'asylum-applications'
+  | 'asylum-decisions'
+  | 'context-indicators'
+  | 'idps'
+  | 'conflict-events'
+  | 'humanitarian-funding'
+  | 'food-security';
 
 export const ALL_DATASETS: readonly DatasetId[] = [
   'population',
@@ -17,6 +25,10 @@ export const ALL_DATASETS: readonly DatasetId[] = [
   'asylum-applications',
   'asylum-decisions',
   'context-indicators',
+  'idps',
+  'conflict-events',
+  'humanitarian-funding',
+  'food-security',
 ];
 
 /**

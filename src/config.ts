@@ -27,6 +27,8 @@ export interface Config {
   readonly httpHost: string;
   /** User-Agent sent with every outgoing request. */
   readonly userAgent: string;
+  /** HDX HAPI app identifier (required only when the hdx provider is enabled). */
+  readonly hdxAppIdentifier: string;
 }
 
 export const SERVER_NAME = 'humanitarian-mcp';
@@ -87,5 +89,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     userAgent:
       env['HMCP_USER_AGENT'] ??
       `${SERVER_NAME}/${SERVER_VERSION} (+https://github.com/ahmedvnabil/humanitarian-mcp)`,
+    hdxAppIdentifier: env['HMCP_HDX_APP_ID']?.trim() ?? '',
   };
 }
