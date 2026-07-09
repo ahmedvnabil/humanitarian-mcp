@@ -82,6 +82,28 @@ Age/sex buckets (`0–4, 5–11, 12–17, 18–59, 60+` × female/male) come
 normalized; `generate_chart(format: "svg")` produces a publication-ready
 figure. Note: UNHCR publishes demographics for recent years only.
 
+## Workflow 4 — Hosting burden, per capita
+
+_Question: which countries carry the largest hosting burden relative to their
+size?_ Absolute numbers hide it: Lebanon and Germany host similar refugee
+counts; per 1,000 residents they are worlds apart.
+
+```text
+top_host_countries({ year: 2024, normalize_by: "population" })
+→ ranked refugees per 1,000 residents, with each country's raw value and
+  the World Bank denominator year disclosed per row
+
+compare_countries({ countries: ["Lebanon", "Jordan", "Germany"],
+                    normalize_by: "population", year_from: 2015 })
+→ per-capita series, denominators matched per year (2015 refugees ÷ 2015
+  population — not today's population)
+```
+
+`normalize_by: "gdp"` gives the same views per US$1bn of GDP. Denominators
+come from the World Bank provider (`context-indicators` dataset, enabled by
+default); countries with no denominator data are omitted **and counted** in
+the output, never silently dropped.
+
 ## Method notes & caveats
 
 - Figures are **end-year stocks** (recent years may be mid-year preliminary);
