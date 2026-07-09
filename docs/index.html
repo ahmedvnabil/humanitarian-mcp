@@ -20,6 +20,92 @@
       property="og:image"
       content="https://raw.githubusercontent.com/ahmedvnabil/humanitarian-mcp/main/assets/social-preview.png"
     />
+    <meta property="og:url" content="https://ahmedvnabil.github.io/humanitarian-mcp/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://ahmedvnabil.github.io/humanitarian-mcp/" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141c2e'/%3E%3Crect x='5' y='18' width='6' height='9' fill='%23ece3cf'/%3E%3Crect x='13' y='13' width='6' height='14' fill='%23e3a83a'/%3E%3Crect x='21' y='5' width='6' height='22' fill='%23c4372c'/%3E%3C/svg%3E"
+    />
+    <link rel="preload" href="fonts/Zad-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/Zad-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "humanitarian-mcp",
+        "description": "خادم Model Context Protocol مفتوح المصدر يمنح المساعدات الذكية وصولًا نظيفًا وموثّقًا لإحصاءات اللاجئين من مفوضية الأمم المتحدة.",
+        "url": "https://ahmedvnabil.github.io/humanitarian-mcp/",
+        "sameAs": "https://github.com/ahmedvnabil/humanitarian-mcp",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS, Windows, Linux",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "license": "https://opensource.org/licenses/MIT",
+        "author": {
+          "@type": "Person",
+          "name": "Ahmed Nabil",
+          "url": "https://github.com/ahmedvnabil"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "هل الاستخدام مجاني؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "نعم. المشروع مفتوح المصدر برخصة MIT، وبيانات UNHCR عامة ولا تحتاج أي مفاتيح API — الخادم نفسه لا يكلّف شيئًا."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل أحتاج خبرة برمجية؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "لا. التثبيت أمر واحد في الطرفية وملف إعداد واحد، وبعد ذلك كل شيء يجري بلغتك الطبيعية داخل المحادثة."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ما مدى حداثة الأرقام؟ وهل هي رسمية؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "تأتي من واجهة UNHCR الرسمية مباشرة مع كاش محلي يتحدّث تلقائيًا. الأرقام أرصدة نهاية سنة، وقد تكون أحدث السنوات تقديرات أولية — وكل ناتج يحمل سنة المرجع ومصدره."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "أين تذهب أسئلتي وبياناتي؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "لا مكان. الخادم يعمل محليًا على جهازك، قراءةً فقط، ولا يتصل إلا بواجهة UNHCR — لا تتبّع ولا طرف ثالث، ويدعم وضع عدم الاتصال الكامل."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل يعمل بالعربية فقط؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "اسأل بأي لغة يفهمها مساعدك — الأدوات محايدة اللغة وتعيد بيانات منظمة، والمساعد يصوغ الإجابة بلغة سؤالك."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "هل التوقعات (forecast) أرقام تخطيط أممية؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "لا. هي إسقاطات خطية بسيطة مُعلَّمة بوضوح — تصلح لاستشعار الاتجاه لا للتخطيط الرسمي، ولا يصح نسبتها إلى المفوضية."
+            }
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -62,6 +148,20 @@
         font-weight: 700;
         font-display: swap;
         src: url('fonts/Zad-Bold.woff2') format('woff2');
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        ::before,
+        ::after {
+          animation-duration: 0.01ms !important;
+          animation-delay: 0ms !important;
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -118,11 +218,17 @@
         }
       }"
   >
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:right-2 focus:bg-amber focus:text-ink focus:px-4 focus:py-2 focus:font-bold"
+      >تخطَّ إلى المحتوى</a
+    >
+
     <!-- ━━ الترويسة ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
     <header class="bg-ink text-paper">
       <div class="max-w-6xl mx-auto px-6 py-4 flex flex-wrap items-center gap-x-8 gap-y-2">
         <span class="font-mono text-sm text-amber" dir="ltr">humanitarian-mcp</span>
-        <nav class="mr-auto flex items-center gap-6 text-sm">
+        <nav aria-label="التنقل الرئيسي" class="mr-auto flex items-center gap-6 text-sm">
           <a href="#why" class="text-fog hover:text-paper">لماذا؟</a>
           <a href="#who" class="text-fog hover:text-paper">لمن؟</a>
           <a href="#usage" class="text-fog hover:text-paper">التشغيل</a>
@@ -138,7 +244,7 @@
     </header>
 
     <!-- ━━ الافتتاحية (شريط حبري) ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-    <section class="bg-ink text-paper border-b-4 border-amber">
+    <section id="main" class="bg-ink text-paper border-b-4 border-amber">
       <div
         class="max-w-6xl mx-auto px-6 pt-16 pb-14 lg:pt-20 grid lg:grid-cols-[7fr,5fr] gap-12 items-center"
       >
@@ -698,6 +804,13 @@ demographics({ country: "Egypt" })
           >. <span class="text-paper">تنبيه للباحثين:</span> الأرقام أرصدة نهاية سنة، وقد تكون
           أحدث السنوات تقديرات منتصف سنة أولية.
         </p>
+        <button
+          class="mt-4 text-sm font-semibold border border-inkline px-5 py-2 text-fog hover:text-paper hover:border-amber"
+          @click="copy('cite', 'المصدر: مفوضية الأمم المتحدة السامية لشؤون اللاجئين (UNHCR) — Refugee Data Finder: unhcr.org/refugee-statistics')"
+          x-text="copied==='cite' ? '✓ نُسخت — الصقها أسفل الرسم أو الجدول' : 'انسخ جملة الإسناد الجاهزة'"
+        >
+          انسخ جملة الإسناد الجاهزة
+        </button>
       </div>
     </section>
 
@@ -861,6 +974,125 @@ demographics({ country: "Egypt" })
           class="mt-7 inline-block px-7 py-3 border-2 border-ink bg-ink text-paper font-bold text-sm hover:bg-teal hover:border-teal"
           >⭐ ضع نجمة لتتابع وصول المزوّدين الجدد</a
         >
+      </div>
+    </section>
+
+    <!-- ━━ ٠٨ أسئلة تسبق التجربة ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <section id="faq" class="border-t border-rule">
+      <div class="max-w-6xl mx-auto px-6 py-16 lg:py-20">
+        <p class="font-mono text-teal text-sm mb-2" dir="ltr">08</p>
+        <h2 class="font-head font-bold text-3xl sm:text-4xl">أسئلة تسبق التجربة</h2>
+
+        <div class="mt-8 max-w-3xl border-t border-rule">
+          <details class="group border-b border-rule">
+            <summary
+              class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
+            >
+              هل الاستخدام مجاني؟
+              <span
+                class="font-mono text-teal text-xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p class="pb-5 text-sm text-soft leading-relaxed">
+              نعم. المشروع مفتوح المصدر برخصة MIT، وبيانات UNHCR عامة ولا تحتاج أي مفاتيح API —
+              الخادم نفسه لا يكلّف شيئًا. عميل MCP الذي تختاره (Claude Desktop مثلًا) له خططه
+              الخاصة، والخادم يعمل مع خططها المجانية.
+            </p>
+          </details>
+
+          <details class="group border-b border-rule">
+            <summary
+              class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
+            >
+              هل أحتاج خبرة برمجية؟
+              <span
+                class="font-mono text-teal text-xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p class="pb-5 text-sm text-soft leading-relaxed">
+              لا. التثبيت أمرٌ واحد في الطرفية وملف إعداد واحد — قسم
+              <a class="text-teal border-b border-teal hover:text-ink hover:border-ink" href="#usage"
+                >«التشغيل»</a
+              >
+              أعلاه يشرحه خطوة بخطوة. بعد ذلك كل شيء يجري بلغتك الطبيعية داخل المحادثة.
+            </p>
+          </details>
+
+          <details class="group border-b border-rule">
+            <summary
+              class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
+            >
+              ما مدى حداثة الأرقام؟ وهل هي رسمية؟
+              <span
+                class="font-mono text-teal text-xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p class="pb-5 text-sm text-soft leading-relaxed">
+              تأتي من واجهة UNHCR الرسمية مباشرة، مع كاش محلي يتحدّث تلقائيًا. الأرقام أرصدة نهاية
+              سنة، وقد تكون أحدث السنوات تقديرات منتصف سنة أولية — وكل ناتج يحمل سنة المرجع ومصدره
+              حتى تتحقق بنفسك.
+            </p>
+          </details>
+
+          <details class="group border-b border-rule">
+            <summary
+              class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
+            >
+              أين تذهب أسئلتي وبياناتي؟
+              <span
+                class="font-mono text-teal text-xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p class="pb-5 text-sm text-soft leading-relaxed">
+              لا مكان. الخادم يعمل محليًا على جهازك، قراءةً فقط، ولا يتصل إلا بواجهة UNHCR — لا
+              تتبّع ولا طرف ثالث. ومع
+              <code class="font-mono text-ink" dir="ltr">HMCP_OFFLINE=1</code> يعمل من الكاش بلا
+              اتصال إطلاقًا.
+            </p>
+          </details>
+
+          <details class="group border-b border-rule">
+            <summary
+              class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
+            >
+              هل يعمل بالعربية فقط؟
+              <span
+                class="font-mono text-teal text-xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p class="pb-5 text-sm text-soft leading-relaxed">
+              اسأل بأي لغة يفهمها مساعدك — عربية أو إنجليزية أو غيرهما. الأدوات نفسها محايدة اللغة
+              وتعيد بيانات منظمة، والمساعد يصوغ الإجابة بلغة سؤالك.
+            </p>
+          </details>
+
+          <details class="group border-b border-rule">
+            <summary
+              class="cursor-pointer list-none [&::-webkit-details-marker]:hidden py-5 flex items-baseline justify-between gap-6 font-head font-bold text-lg hover:text-teal"
+            >
+              هل التوقعات (forecast) أرقام تخطيط أممية؟
+              <span
+                class="font-mono text-teal text-xl leading-none transition-transform group-open:rotate-45"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <p class="pb-5 text-sm text-soft leading-relaxed">
+              لا. هي إسقاطات خطية بسيطة مُعلَّمة بوضوح على أنها كذلك — تصلح لاستشعار الاتجاه، لا
+              للتخطيط الرسمي، ولا يصح نسبتها إلى المفوضية.
+            </p>
+          </details>
+        </div>
       </div>
     </section>
 
