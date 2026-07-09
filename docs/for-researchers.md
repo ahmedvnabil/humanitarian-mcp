@@ -18,7 +18,7 @@ language (Arabic or English) inside any connected assistant.
 
 ## Workflow 1 — Event study (interrupted time series)
 
-*Question: what did the April 2023 war do to displacement from Sudan?*
+_Question: what did the April 2023 war do to displacement from Sudan?_
 
 ```text
 trend_analysis({ country: "Sudan", role: "origin", year_from: 2010 })
@@ -52,7 +52,7 @@ summary(lm(refugees ~ t * post, data = df))
 
 ## Workflow 2 — Asylum policy comparison
 
-*Question: how do recognition rates differ across host states?*
+_Question: how do recognition rates differ across host states?_
 
 ```text
 asylum_decisions({ country: "Egypt", year_from: 2019 })
@@ -71,7 +71,7 @@ export_data({ dataset: "asylum-decisions", group_by: "asylum",
 
 ## Workflow 3 — Demographic composition
 
-*Question: what share of refugees in Egypt are women and children?*
+_Question: what share of refugees in Egypt are women and children?_
 
 ```text
 demographics({ country: "Egypt" })
