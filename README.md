@@ -50,11 +50,22 @@ An LLM pointed at the raw REST API burns tokens rediscovering these traps every 
 Requires Node.js ≥ 20 (SQLite cache uses the built-in `node:sqlite` on Node ≥ 22.5; older Nodes fall back to memory automatically).
 
 ```bash
+npx humanitarian-mcp        # from npm (v0.2.0+), no clone needed
+```
+
+Or from source:
+
+```bash
 git clone https://github.com/ahmedvnabil/humanitarian-mcp
 cd humanitarian-mcp
 npm install
 npm run build
 ```
+
+Claude Desktop users can skip the terminal entirely: download
+`humanitarian-mcp.mcpb` from the latest
+[release](https://github.com/ahmedvnabil/humanitarian-mcp/releases) and
+double-click it to install.
 
 ### Claude Desktop / Claude Code
 
@@ -195,14 +206,33 @@ The integration suite drives the real server through the official SDK client ove
 - Forecasts are naive statistical extrapolations, clearly labelled — never treat them as UNHCR planning figures.
 - These numbers represent people. Present them with the care they deserve.
 
+## Citing
+
+Researchers: click **"Cite this repository"** on GitHub (metadata lives in
+[CITATION.cff](CITATION.cff)), and cite the figures themselves as UNHCR,
+Refugee Data Finder (year of extraction). Reproducible workflows and method
+notes: [docs/for-researchers.md](docs/for-researchers.md).
+
 ## Roadmap
 
-- [ ] ReliefWeb provider (situation reports, disasters)
-- [ ] HDX / HAPI provider (food security, conflict events, funding)
-- [ ] IDMC internal displacement dataset
-- [ ] World Bank & Our World in Data indicators for denominator context
-- [ ] Redis cache backend
-- [ ] npm package + `npx humanitarian-mcp`
+Ordered by what researchers, MCP users and humanitarian organisations need
+first:
+
+- [x] npm package + `npx humanitarian-mcp`, one-click Claude Desktop bundle
+      (`.mcpb`) and citation metadata — ships with **v0.2.0**
+- [x] Arabic country names in search and resolution («مصر», «السودان»,
+      «الأردن» resolve like their English forms)
+- [x] Reproducible extraction manifests on every `export_data` call
+- [ ] World Bank context indicators + per-capita normalization
+      (`normalize_by: "population" | "gdp"`) — **v0.3.0**
+- [ ] HDX/HAPI provider: internal displacement (IDMC), conflict events
+      (ACLED), humanitarian funding (FTS), food security (IPC) — **v0.4.0**
+- [ ] Docker image + compose for organisational self-hosting
+- [ ] Automatic codebooks, runnable Python/R notebooks, JOSS paper — **v0.5.0 → v1.0**
+
+Deferred, contributions welcome: ReliefWeb provider (situation reports,
+disasters, jobs — scaffold in `src/providers/reliefweb/`), full Arabic report
+generation (`locale: "ar"`), Redis cache backend.
 
 ## License
 

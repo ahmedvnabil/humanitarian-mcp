@@ -97,10 +97,16 @@ figure. Note: UNHCR publishes demographics for recent years only.
 ## Citing
 
 Cite the data as UNHCR, Refugee Data Finder (year of extraction), and the
-tooling as:
+tooling via GitHub's **"Cite this repository"** button (backed by
+[CITATION.cff](../CITATION.cff)), or as:
 
-> humanitarian-mcp (v0.1.0), open-source MCP server,
+> humanitarian-mcp (v0.2.0), open-source MCP server,
 > https://github.com/ahmedvnabil/humanitarian-mcp
+
+Every `export_data` call attaches an extraction manifest (exact arguments,
+timestamp, server version, citation) — paste it in your appendix and anyone
+can reproduce the pull. In CSV it rides in `#` comment lines:
+`pd.read_csv("sudan.csv", comment="#")` / `read.csv("sudan.csv", comment.char="#")`.
 
 ## Offline fieldwork
 
