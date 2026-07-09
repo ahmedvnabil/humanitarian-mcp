@@ -235,12 +235,82 @@ describe('tool surface', () => {
     expect(bare.manifest).toBeUndefined();
   });
 
+  it('generate_chart plots normalized values with the unit on the axis', async () => {
+    const chart = (await call('generate_chart', {
+      countries: ['Jordan'],
+      format: 'chartjs',
+      normalize_by: 'population',
+      year_from: 2023,
+      year_to: 2024,
+    })) as {
+      unit: string;
+      title: string;
+      spec: { options: { scales: { y: { title: { text: string } } } } };
+    };
+    expect(chart.unit).toBe('per 1,000 residents');
+    expect(chart.title).toContain('per 1,000 residents');
+  });
+
+  it('compare_countries normalizes per 1,000 residents with normalize_by', async () => {
+    const result = (await call('compare_countries', {
+      countries: ['Egypt', 'Jordan'],
+      normalize_by: 'population',
+      year_from: 2023,
+      year_to: 2024,
+    })) as {
+      normalize_by: string;
+      unit: string;
+      denominator: { source: string; metric: string };
+      series: { country_code: string; points: { year: number; value: number }[] }[];
+    };
+
+    expect(result.normalize_by).toBe('population');
+    expect(result.unit).toBe('per 1,000 residents');
+    expect(result.denominator).toMatchObject({ source: 'mock', metric: 'national_population' });
+
+    // EGY 2024: 190,000 refugees / 110M residents × 1000 = 1.727…
+    const egy = result.series.find((s) => s.country_code === 'EGY')!;
+    expect(egy.points.find((p) => p.year === 2024)!.value).toBeCloseTo(1.727, 2);
+    // JOR 2024: 690,000 / 11M × 1000 = 62.727…
+    const jor = result.series.find((s) => s.country_code === 'JOR')!;
+    expect(jor.points.find((p) => p.year === 2024)!.value).toBeCloseTo(62.727, 2);
+  });
+
+  it('top_host_countries reorders the ranking under normalize_by', async () => {
+    const raw = (await call('top_host_countries', { year: 2024, limit: 4 })) as {
+      ranking: { country_code: string }[];
+    };
+    // Absolute numbers: Sudan hosts most in the mock data.
+    expect(raw.ranking[0]!.country_code).toBe('SDN');
+
+    const normalized = (await call('top_host_countries', {
+      year: 2024,
+      limit: 4,
+      normalize_by: 'population',
+    })) as {
+      unit: string;
+      ranking: {
+        country_code: string;
+        value: number;
+        raw_value?: number;
+        denominator_year?: number;
+      }[];
+    };
+
+    // Per 1,000 residents Jordan leads (62.7) ahead of Sudan (18.5).
+    expect(normalized.unit).toBe('per 1,000 residents');
+    expect(normalized.ranking.map((r) => r.country_code)).toEqual(['JOR', 'SDN', 'SYR', 'EGY']);
+    expect(normalized.ranking[0]!.raw_value).toBe(690_000);
+    expect(normalized.ranking[0]!.denominator_year).toBe(2024);
+    expect(normalized.ranking[0]!.value).toBeCloseTo(62.727, 2);
+  });
+
   it('get_metadata and provider_health describe the mock provider', async () => {
     const metadata = (await call('get_metadata')) as {
       providers: { id: string; datasets: unknown[] }[];
     };
     expect(metadata.providers[0]!.id).toBe('mock');
-    expect(metadata.providers[0]!.datasets).toHaveLength(4);
+    expect(metadata.providers[0]!.datasets).toHaveLength(5);
 
     const health = (await call('provider_health')) as {
       healthy: boolean;

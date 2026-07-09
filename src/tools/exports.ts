@@ -66,7 +66,7 @@ export function registerExportTools(server: McpServer, ctx: AppContext): void {
         'Export normalized records from any dataset as csv, json, markdown or geojson (geojson only makes sense with group_by set, so rows map to countries). Use this when the user wants raw data to download or paste elsewhere.',
       inputSchema: {
         dataset: DatasetIdSchema.describe(
-          'population | demographics | asylum-applications | asylum-decisions',
+          'population | demographics | asylum-applications | asylum-decisions | context-indicators',
         ),
         format: z.enum(['csv', 'json', 'markdown', 'geojson']).describe('Serialization format'),
         country: z.string().optional().describe('Filter by country (name or ISO3)'),

@@ -49,6 +49,21 @@ function refugeesFor(iso3: string, year: number): number {
   return (base[iso3] ?? 50_000) + (year - 2015) * 10_000;
 }
 
+/** Constant context indicators so per-capita maths is hand-checkable. */
+const NATIONAL_POPULATION: Record<string, number> = {
+  EGY: 110_000_000,
+  JOR: 11_000_000,
+  SYR: 22_000_000,
+  SDN: 48_000_000,
+};
+
+const GDP_USD: Record<string, number> = {
+  EGY: 400e9,
+  JOR: 50e9,
+  SYR: 9e9,
+  SDN: 30e9,
+};
+
 export class MockProvider implements HumanitarianProvider {
   readonly id = 'mock';
   readonly name = 'Mock Provider';
@@ -105,6 +120,29 @@ export class MockProvider implements HumanitarianProvider {
           origin: 'Syrian Arab Rep.',
           origin_code: 'SYR',
         }));
+      }
+    } else if (query.dataset === 'context-indicators') {
+      const iso3 = (query.asylum_iso3 ?? query.origin_iso3)?.toUpperCase();
+      const subjects = iso3 ? COUNTRIES.filter((c) => c.iso3 === iso3) : COUNTRIES;
+      for (let year = yearFrom; year <= yearTo; year++) {
+        for (const subject of subjects) {
+          const population = NATIONAL_POPULATION[subject.iso3] ?? 10_000_000;
+          const gdp = GDP_USD[subject.iso3] ?? 20e9;
+          records.push({
+            country: subject.name,
+            country_code: subject.iso3,
+            year,
+            population,
+            metrics: {
+              national_population: population,
+              gdp_usd: gdp,
+              gdp_per_capita_usd: gdp / population,
+            },
+            source: 'mock',
+            last_updated: '2026-01-01T00:00:00.000Z',
+            dataset: 'context-indicators',
+          });
+        }
       }
     } else if (query.dataset === 'demographics') {
       const iso3 = (query.asylum_iso3 ?? query.origin_iso3 ?? 'EGY').toUpperCase();
@@ -184,7 +222,13 @@ export class MockProvider implements HumanitarianProvider {
       description: 'Deterministic fixture data for tests',
       homepage: 'https://example.test',
       datasets: (
-        ['population', 'demographics', 'asylum-applications', 'asylum-decisions'] as DatasetId[]
+        [
+          'population',
+          'demographics',
+          'asylum-applications',
+          'asylum-decisions',
+          'context-indicators',
+        ] as DatasetId[]
       ).map((id) => ({
         id,
         title: id,
